@@ -2,6 +2,8 @@ class Potion{
     constructor(){
         this.potionInfo=null;
         this.playerOne=null;
+        this.slots=null;
+        
     }
     createPotion(potionInfo){
         this.potionInfo=potionInfo;
