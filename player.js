@@ -41,6 +41,7 @@ class Game{
  
     checkWin(checkFilled){
         if(checkFilled){
+            $('#modal').toggleClass('hide');
             console.log('win!!!!!!!!!!!!!');
         } else {
             console.log('not won yet!!!!!!!!!!keep Playing!!!!!!!');
@@ -72,7 +73,6 @@ class Game{
         return marbles; //the leftover marbles
     }
     changePlayer(potion){
-        debugger;
         var player = potion.player;
         console.log(player);
         var currentPlay = '.player'+player+'-container'

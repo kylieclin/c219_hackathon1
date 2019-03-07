@@ -42,7 +42,6 @@ class Potion{
         return potionContainer;
     }
     checkFilledStatus(){
-        debugger;
         var potionNum= this.numbers;
         var filled= true;
         for(var numIndex=0; numIndex < potionNum.length; numIndex++){
