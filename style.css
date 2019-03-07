@@ -50,6 +50,9 @@ body {
     width:90%;
     border-radius:50%;
 }
+.hidden{
+    display:'none'
+}
 .action-container{
     width:40%;
     height:100%;
