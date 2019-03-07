@@ -19,6 +19,7 @@ class Game{
         var newPotion = new Potion(this.potionData, player, this.fillPotion);
         var potionNeedtoRender= newPotion.renderPotion();
         this.playerpotions.push(newPotion);
+        console.log(newPotion);
         var playIndex = '.player'+ player+'-has';
         $(playIndex).append(potionNeedtoRender);
         }
