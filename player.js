@@ -13,7 +13,7 @@ class Game{
         this.totalRows = null;
     }
     
-     generatePotion(){
+    generatePotion(){
         debugger;
         for(var player = 0; player < this.player; player++){
         var newPotion = new Potion(this.potionData, player);
@@ -36,8 +36,9 @@ class Game{
         }
     }
     createGameBoard(){
-        this.dispenser = new Dispenser(9);
+        this.dispenser = new Dispenser(5);
         this.dispenserContainerDom.append(this.dispenser.render());
+        this.dispenser.randomlyCreateRowColors();
         this.dispenser.createRow();
     }
     getGameRows(){
