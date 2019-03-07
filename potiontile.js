@@ -1,15 +1,19 @@
 class Potion{
 
-    constructor(potionInfo, player){
-
+    constructor(potionInfo, player, callback){
+        
         this.color= potionInfo.color;
         this.numbers= potionInfo.numbers;
         this.dom = [];
         this.player = player;
+        this.callback = {
+            click: callback
+        }
         this.renderPotion = this.renderPotion.bind(this);
+        this.fillPotionClick = this.fillPotionClick.bind(this);
     }
     renderPotion(){
-        var potionContainer=$('<div>').addClass('potionContainer');
+        var potionContainer=$('<div>').addClass('potionContainer').click(this.fillPotionClick);
         for(var pIndex = 0; pIndex < this.color.length; pIndex++){
             var temp=$('<div>',{
                 'css':{
@@ -28,18 +32,21 @@ class Potion{
             potionContainer.append(temp);
 
         };  
-
         return potionContainer;
-    }    
+    }
     checkFilledStatus(){
         debugger;
         var potionNum= this.numbers;
-        var filled=null;
-        for(var numIndex=0; numIndex < potionNum,length; numIndex++){
+        var filled= true;
+        for(var numIndex=0; numIndex < potionNum.length; numIndex++){
             if(potionNum[numIndex] != 0){
-                return filled = false;
+                filled = false;
+                return filled;
             }
         }
-        return filled = true;
+        return filled;
+    }
+    fillPotionClick(){
+        this.callback.click(this);
     }
 }
