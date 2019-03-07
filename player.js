@@ -10,6 +10,7 @@ class Game{
         this.playerpotions=[];
         this.dispenser = null;
         this.dispenserContainerDom=$('.board-container');
+        this.totalRows = null;
     }
     
      generatePotion(){
@@ -38,6 +39,12 @@ class Game{
         this.dispenser = new Dispenser(9);
         this.dispenserContainerDom.append(this.dispenser.render());
         this.dispenser.createRow();
+    }
+    getGameRows(){
+        this.totalRows =this.dispenser.getRows();
+    }
+    checkMarbles(){
+        
     }
 
     //click (event listener)
