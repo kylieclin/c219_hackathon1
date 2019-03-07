@@ -1,15 +1,16 @@
 class Potion{
     constructor(){
         this.potionInfo=null;
-        this.playerOne=null;
+        this.potionDom=null;
         this.createPotion = this.createPotion.bind(this);
+        this.playerPotion = {};
     }
     createPotion(potionInfo){
         this.potionInfo=potionInfo;
         this.potionInfo.color[0];
         debugger;
         for(var pIndex = 0; pIndex < this.potionInfo.color.length; pIndex++){
-            this.playerOne=$('<div>',{
+            this.potionDom=$('<div>',{
             'css':{
                 'background-color': this.potionInfo.color[pIndex],
             },
@@ -17,7 +18,7 @@ class Potion{
             'text':this.potionInfo.numbers[pIndex],
             'class': 'potionbala ' + this.potionInfo.color[pIndex] + this.potionInfo.numbers[pIndex]
            
-        })
+            })
         this.render();
         }
         
