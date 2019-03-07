@@ -11,10 +11,10 @@ class Game{
         this.dispenser = null;
         this.dispenserContainerDom=$('.board-container');
         this.totalRows = null;
+        this.fillPotion = this.fillPotion.bind(this);
     }
     
     generatePotion(){
-        debugger;
         for(var player = 0; player < this.player; player++){
         var newPotion = new Potion(this.potionData, player, this.fillPotion);
         var potionNeedtoRender= newPotion.renderPotion();
@@ -27,15 +27,7 @@ class Game{
         
         // newPotion.fillPotion(fakeM);  ***go somewhere later***
     }
-    changePlayer(){
-        if(firstplayer){
-            //firstplayer play
-            firstplayer = true;
-        } else {
-            //secondplayer play
-            firstplayer = false;
-        }
-    }
+
     createGameBoard(){
         this.dispenser = new Dispenser(5);
         this.dispenserContainerDom.append(this.dispenser.render());
@@ -49,13 +41,19 @@ class Game{
         
     }
  
-    winGame(){
+    checkWin(checkFilled){
+        if(checkFilled){
+            console.log('win!!!!!!!!!!!!!');
+        } else {
+            console.log('not won yet!!!!!!!!!!keep Playing!!!!!!!');
+        }
+        
         //win the game
         //render status (count score)
         //default set to if any potion is full?
     }
     fillPotion(potion){
-        var marblesArr = [{marblecolor: 'red'},{marblecolor: 'black'},{marblecolor: 'blue'}]; //fake
+        var marblesArr = [{marblecolor: 'red'},{marblecolor: 'yellow'},{marblecolor: 'blue'}]; //fake
         debugger;
         var marbles = marblesArr.concat(); //copy the marbles array for slice
         for(var MIndex = 0; MIndex < marblesArr.length; MIndex++){
@@ -69,11 +67,32 @@ class Game{
                 }
             }
         }
+        this.changePlayer(potion);
         var checkFilled = potion.checkFilledStatus();
+        this.checkWin(checkFilled);
         console.log('Filled is: ' + checkFilled);//should return this somewhere;
         return marbles; //the leftover marbles
     }
-    
+    changePlayer(potion){
+        debugger;
+        var player = potion.player;
+        console.log(player);
+        var currentPlay = '.player'+player+'-container'
+        if(player === 0){
+            var nextPlay = '.player1-container';
+        } else {
+            var nextPlay = '.player0-container';
+        }
+        $(currentPlay).css({
+                'opacity': '0.1',
+                'pointer-events': 'none'
+            });
+        $(nextPlay).css({
+            'opacity': '1',
+            'pointer-events': 'auto'
+        });
+        // currPlayerDone = true;
+    }
     
 
 
