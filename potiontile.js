@@ -8,13 +8,6 @@ class Potion{
         this.potionInfo.dom = [];
 
         this.potionDom= null;
-        // this.potion={
-        //     potionDom:null,
-        //     potionStorage:{
-        //         color:null,
-        //         number:null
-        //     }
-        // };
         this.renderPotion = this.renderPotion.bind(this);
     }
     renderPotion(){
@@ -28,24 +21,19 @@ class Potion{
             'text':this.potionInfo.numbers[pIndex],
             'class': 'potionslot'
             })
-            debugger;
-            // this.potion.color = this.potionInfo.color[pIndex];
-            // this.potion.number = this.potionInfo.numbers[pIndex];
+
             this.potionInfo.dom.push(this.potionDom);
             potionContainer.append(this.potionDom);
 
         };  
 
         return potionContainer;
-    }
-
-
-        
+    }    
     checkFilledStatus(){
         debugger;
-        var potionNum= this.potion.number;
+        var potionNum= this.potionInfo.numbers;
         var filled=null;
-        for(var numIndex=0; numIndex < potionNum; numIndex++){
+        for(var numIndex=0; numIndex < potionNum,length; numIndex++){
             if(potionNum[numIndex] != 0){
                 return filled = false;
             }
