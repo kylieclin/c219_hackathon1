@@ -112,26 +112,28 @@ body {
 .player0-has,.player1-has{
     width:70%;
     background-color:#c63d95;
-    
+    position: relative;
     height:100%;
     display:inline-block;
     vertical-align: top;
-    border-radius: 50px;
-    overflow: hidden;
 }
 
 .potionContainer{
-    width: 100%;
+    position: relative;
+    left: 25%;
+    width: 50%;
     height:100%;
-
+    border-radius: 150px;
+    overflow: hidden;
 }
 .potionslot{
+    padding-top: 10px;
     width: 100%;
-    height: 33.33%;
+    height: 30%;
     position: relative;
     display: inline-block;
     color: darkgrey;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     position: relative;
     text-align: center;
@@ -141,10 +143,11 @@ body {
     width: 15%;
     text-align: center;
     color: rgb(255, 248, 248);
-    font-size: 2rem;
+    font-size: 1.5rem;
     position: relative;
     display: inline-block;
     margin: 0;
+
 }
 .score{
     width:30%;
