@@ -1,5 +1,7 @@
 class Potion{
+
     constructor(potionInfo, player){
+
         this.potionInfo=potionInfo;
         this.potionDom={
             potionStorage:{

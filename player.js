@@ -1,11 +1,12 @@
 //game (potionobj, marbleobj)
 class Game{
-    constructor(){
+    constructor(potionData){
         // this.marble;
         // this.potion;
         // this.score;
         // this.marbles =  new Marbles();
-        this.potion = new Potion();
+        this.player = 2;
+        this.potionData = potionData;
     }
     //click (event listener)
     addEventListener(){
@@ -16,17 +17,24 @@ class Game{
     
     //1)generate marbles
     generateMarble(){
-        //get the marble datas from main.js 
+        //get the marble datas from main.js s
         //pass into class marble
     
     }
     //2)generate potion
        
-    generatePotion(potionData){
-        this.potion.createPotion(potionData);
-        //get the potion datas from main.js and pass into class "______"?
+    generatePotion(){
+        for(var player = 1; player <= this.player; player++){
+        var newPotion = new Potion(this.potionData);
+        var potionNeedtoRender= newPotion.renderPotion();
+        var playIndex = '.player'+ player+'-has';
+        $(playIndex).append(potionNeedtoRender);
+        }
     }
 
+    checkPotion(){
+        this.potion.checkFillStatus();
+    }
     
     //3)change player
         //define whos turn to play (even/odd or boolean)
@@ -43,10 +51,10 @@ class Game{
     //4)pick/show potions
         //let player to pick potions?
         //place the potion to the player's box
-    pickPotion(){
-        //player take turns pick potion
-        //click to choose
-    }
+    // pickPotion(){
+    //     //player take turns pick potion
+    //     //click to choose
+    // }
     //5)pick marbles
     pickMarble(){
         //pick marbles
@@ -75,9 +83,7 @@ class Game{
         // reveal the portion once all the marbles are collect
         //add scores
         //and change player after done
-    checkPotion(){
-        //if potion is full, flip
-    }
+
     
     winGame(){
         //win the game
