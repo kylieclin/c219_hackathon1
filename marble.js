@@ -10,7 +10,7 @@ class Marble{
         this.domElements = {
             container: null,
             marble:null
-        }
+        } 
     }
     handleClick(){
         console.log('marble ' + this.marbleColor + ' was clicked');
