@@ -15,8 +15,8 @@ class Game{
     
      generatePotion(){
         debugger;
-        for(var player = 1; player <= this.player; player++){
-        var newPotion = new Potion(this.potionData);
+        for(var player = 0; player < this.player; player++){
+        var newPotion = new Potion(this.potionData, player);
         var potionNeedtoRender= newPotion.renderPotion();
         this.playerpotions.push(newPotion);
         var playIndex = '.player'+ player+'-has';

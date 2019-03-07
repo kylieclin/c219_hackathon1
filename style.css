@@ -69,18 +69,18 @@ body {
     background-color:lightgray;
     height:25%;
 }
-.player1-container,.player2-container{
+.player0-container,.player1-container{
     width:50%;
     height:100%;
     display:inline-block;
 }
-.player1-container{
+.player0-container{
     background-color:white;
 }
-.player2-container{
+.player1-container{
     background-color:green;
 }
-.player1-has,.player2-has{
+.player0-has,.player1-has{
     width:70%;
     background-color:grey;
     height:100%;
@@ -95,6 +95,16 @@ body {
 
     color: black;
     font-size: 2rem;
+    position: relative;
+}
+
+.slotsleft{
+    color: darkcyan;
+    font-size: 2rem;
+    position: relative;
+    float: right;
+    display: inline-block;
+    margin: 0;
 }
 .score{
     width:30%;
