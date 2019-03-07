@@ -18,23 +18,25 @@ class Dispenser{
         // create new row object, for each new row to add:
 
         // generate an array of marbles with random colors
+        debugger;
         this.marbleArray = {
             colors:['blue','yellow','yellow','yellow','blue','yellow','red','black']
         };
         for (var row_index=0; row_index < this.rowCount; row_index++){
-            var currRow = new Row( this.marbleArray );
+            var currRow = new Row( this.marbleArray);
             this.rows.push(currRow);
-            var rowDomElement = currRow.render();
+            var rowDomElement = currRow.render().addClass('row'+`${row_index}`);
             this.domElements.dispenser.append(rowDomElement);
             currRow.createMarbles();
         }
     }
-
+    getRows(){
+        return this.rows;
+    }
     addMarbleToRow(){
 
     }
     removeMarbleFromRow(){
-
     }
     addRowToDispenser(){
 

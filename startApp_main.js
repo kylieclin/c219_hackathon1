@@ -10,6 +10,6 @@ function startApp(){
     newGame = new Game(potion);
     newGame.generatePotion();
     newGame.createGameBoard();
-
+    newGame.getGameRows();
 }
 
