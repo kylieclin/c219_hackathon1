@@ -8,9 +8,11 @@ class Game{
         this.player = 2; //temp
         this.potionData = potionData;
         this.playerpotions=[];
+        this.dispenser = null;
+        this.dispenserContainerDom=$('.board-container');
     }
-       
-    generatePotion(){
+    
+     generatePotion(){
         debugger;
         for(var player = 1; player <= this.player; player++){
         var newPotion = new Potion(this.potionData);
@@ -23,7 +25,6 @@ class Game{
     checkPotion(){
         this.potion.checkFillStatus();
     }
-    
     changePlayer(){
         if(firstplayer){
             //firstplayer play
@@ -33,6 +34,41 @@ class Game{
             firstplayer = false;
         }
     }
+    createGameBoard(){
+        this.dispenser = new Dispenser(9);
+        this.dispenserContainerDom.append(this.dispenser.render());
+        this.dispenser.createRow();
+    }
+
+    //click (event listener)
+    addEventListener(){
+        //.click to pick the potion
+        //.click to pick marbles
+        //.click to move the marbles
+    }    
+    
+    //1)generate marbles
+    generateMarble(){
+        //get the marble datas from main.js s
+        //pass into class marble
+    
+    }
+    //2)generate potion
+    // generatePotion(){
+    //     for(var player = 1; player <= this.player; player++){
+    //     var newPotion = new Potion(this.potionData);
+    //     var potionNeedtoRender= newPotion.renderPotion();
+    //     var playIndex = '.player'+ player+'-has';
+    //     $(playIndex).append(potionNeedtoRender);
+    //     }
+    // }
+
+    // checkPotion(){
+    //     this.potion.checkFillStatus();
+    // }
+
+    
+
 
 
 
@@ -98,6 +134,8 @@ class Game{
     }
     
     //reset(extra)
+
+
 }
 
 
