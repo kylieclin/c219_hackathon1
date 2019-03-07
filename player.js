@@ -23,9 +23,7 @@ class Game{
         var playIndex = '.player'+ player+'-has';
         $(playIndex).append(potionNeedtoRender);
         }
-
-        
-        // newPotion.fillPotion(fakeM);  ***go somewhere later***
+        this.selectPlay(); // randomly select
     }
 
     createGameBoard(){
@@ -93,8 +91,27 @@ class Game{
         });
         // currPlayerDone = true;
     }
-    
-
+    selectPlay(){
+        var player = Math.floor(Math.random()*2);
+        var currentPlay = '.player'+player+'-container';
+        $(currentPlay).css({
+            'opacity': '0.1',
+            'pointer-events': 'none'
+        });
+    }
+    domForCollectMarbles(marbles){
+        debugger;
+        var marblesArr = [{marblecolor: 'red'},{marblecolor: 'yellow'},{marblecolor: 'blue'}]; //fake
+        for(var colorIndex = 0 ; colorIndex < marblesArr.length; colorIndex++){
+            var colorDiv = $('<div>',{
+                css:{
+                    'background-color' : marblesArr[colorIndex].marblecolor,
+                },
+                class: 'collectedMarbles'
+            })
+            $('.collector-box').append(colorDiv);
+        }
+    }
 
 }
 
