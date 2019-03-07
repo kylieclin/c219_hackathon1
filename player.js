@@ -16,15 +16,15 @@ class Game{
      generatePotion(){
         debugger;
         for(var player = 0; player < this.player; player++){
-        var newPotion = new Potion(this.potionData, player);
+        var newPotion = new Potion(this.potionData, player, this.fillPotion);
         var potionNeedtoRender= newPotion.renderPotion();
         this.playerpotions.push(newPotion);
         var playIndex = '.player'+ player+'-has';
         $(playIndex).append(potionNeedtoRender);
         }
-    }
-    checkPotion(){
-        this.potion.checkFillStatus();
+
+        
+        // newPotion.fillPotion(fakeM);  ***go somewhere later***
     }
     changePlayer(){
         if(firstplayer){
@@ -46,101 +46,33 @@ class Game{
     checkMarbles(){
         
     }
-
-    //click (event listener)
-    addEventListener(){
-        //.click to pick the potion
-        //.click to pick marbles
-        //.click to move the marbles
-    }    
-    
-    //1)generate marbles
-    generateMarble(){
-        //get the marble datas from main.js s
-        //pass into class marble
-    
-    }
-    //2)generate potion
-    // generatePotion(){
-    //     for(var player = 1; player <= this.player; player++){
-    //     var newPotion = new Potion(this.potionData);
-    //     var potionNeedtoRender= newPotion.renderPotion();
-    //     var playIndex = '.player'+ player+'-has';
-    //     $(playIndex).append(potionNeedtoRender);
-    //     }
-    // }
-
-    // checkPotion(){
-    //     this.potion.checkFillStatus();
-    // }
-
-    
-
-
-
-
-
-
-
-    
-        //click (event listener)
-        addEventListener(){
-            //.click to pick the potion
-            //.click to pick marbles
-            //.click to move the marbles
-        }    
-        
-        //1)generate marbles
-        generateMarble(){
-            //get the marble datas from main.js s
-            //pass into class marble
-        
-        }
-
-    //4)pick/show potions
-        //let player to pick potions?
-        //place the potion to the player's box
-    // pickPotion(){
-    //     //player take turns pick potion
-    //     //click to choose
-    // }
-    //5)pick marbles
-    pickMarble(){
-        //pick marbles
-        //put the marbles in the marble container
-    }
-    
-    //6)show picked/earned marbles
-    renderPickedMarbles(){
-        //get total marbles from the collected marble container
-        //get mouse position
-        //call the get marbles function
-        //move the marbles as call back
-        //give up the marble
-    }
-    
-    //7)move marbles
-        //flusk that holds three marbles
-        //get the current potion data and detail for potions that you can hold in
-        //move marbles from the marble comtainer to the player's panel   
-    moveMarble(){
-        //get the mouse poistion
-        //first click select the marble, second click move the marble
-    }
-    
-    //8)check player's potion
-        // reveal the portion once all the marbles are collect
-        //add scores
-        //and change player after done
-
-    
+ 
     winGame(){
         //win the game
         //render status (count score)
         //default set to if any potion is full?
     }
+    fillPotion(potion){
+        var marblesArr = [{marblecolor: 'red'},{marblecolor: 'black'},{marblecolor: 'blue'}]; //fake
+        debugger;
+        var marbles = marblesArr.concat(); //copy the marbles array for slice
+        for(var MIndex = 0; MIndex < marblesArr.length; MIndex++){
+            for(var colorIndex =0; colorIndex < potion.color.length; colorIndex++){
+                if(marblesArr[MIndex].marblecolor === potion.color[colorIndex] && potion.numbers[colorIndex] > 0){
+                    potion.numbers[colorIndex] -=1;
+                    marbles.splice(MIndex, 1);
+                    var textClass = '.' + potion.color[colorIndex] + potion.player;
+                    $(textClass).text(potion.numbers[colorIndex]);
+                    console.log(marbles);
+                }
+            }
+        }
+        var checkFilled = potion.checkFilledStatus();
+        console.log('Filled is: ' + checkFilled);//should return this somewhere;
+        return marbles; //the leftover marbles
+    }
     
-    //reset(extra)
+    
 
 
 }

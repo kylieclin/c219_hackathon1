@@ -3,7 +3,7 @@ $(document).ready(startApp);
 var newGame;
 var potion ={
     color: ['red', 'blue', 'yellow'],//, 'black'],
-    numbers: [1,2,3]
+    numbers: [1,1,1]
 }
 
 function startApp(){
