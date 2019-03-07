@@ -7,9 +7,9 @@ var potion ={
 }
 
 function startApp(){
-    // var gameObj = { //all the marbles + // all the potion  }
-    newGame = new Game();
-    // newGame.generatePotion(potion);
+    newGame = new Game(potion);
+    newGame.generatePotion();
     newGame.createGameBoard();
+
 }
 

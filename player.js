@@ -5,11 +5,41 @@ class Game{
         // this.potion;
         // this.score;
         // this.marbles =  new Marbles();
-        this.player = 2;
+        this.player = 2; //temp
         this.potionData = potionData;
+        this.playerpotions=[];
         this.dispenser = null;
         this.dispenserContainerDom=$('.board-container');
     }
+    
+     generatePotion(){
+        debugger;
+        for(var player = 1; player <= this.player; player++){
+        var newPotion = new Potion(this.potionData);
+        var potionNeedtoRender= newPotion.renderPotion();
+        this.playerpotions.push(newPotion);
+        var playIndex = '.player'+ player+'-has';
+        $(playIndex).append(potionNeedtoRender);
+        }
+    }
+    checkPotion(){
+        this.potion.checkFillStatus();
+    }
+    changePlayer(){
+        if(firstplayer){
+            //firstplayer play
+            firstplayer = true;
+        } else {
+            //secondplayer play
+            firstplayer = false;
+        }
+    }
+    createGameBoard(){
+        this.dispenser = new Dispenser(9);
+        this.dispenserContainerDom.append(this.dispenser.render());
+        this.dispenser.createRow();
+    }
+
     //click (event listener)
     addEventListener(){
         //.click to pick the potion
@@ -36,19 +66,30 @@ class Game{
     // checkPotion(){
     //     this.potion.checkFillStatus();
     // }
+
     
-    //3)change player
-        //define whos turn to play (even/odd or boolean)
-    changePlayer(){
-        if(firstplayer){
-            //firstplayer play
-            firstplayer = true;
-        } else {
-            //secondplayer play
-            firstplayer = false;
+
+
+
+
+
+
+
+    
+        //click (event listener)
+        addEventListener(){
+            //.click to pick the potion
+            //.click to pick marbles
+            //.click to move the marbles
+        }    
+        
+        //1)generate marbles
+        generateMarble(){
+            //get the marble datas from main.js s
+            //pass into class marble
+        
         }
-    }
-    
+
     //4)pick/show potions
         //let player to pick potions?
         //place the potion to the player's box
@@ -93,11 +134,7 @@ class Game{
     }
     
     //reset(extra)
-    createGameBoard(){
-        this.dispenser = new Dispenser(9);
-        this.dispenserContainerDom.append(this.dispenser.render());
-        this.dispenser.createRow();
-    }
+
 
 }
 
