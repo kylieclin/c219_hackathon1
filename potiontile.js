@@ -14,24 +14,29 @@ class Potion{
         this.fillPotionClick = this.fillPotionClick.bind(this);
     }
     renderPotion(){
+        debugger;
+        var copyColor = this.color.concat();
         var potionContainer=$('<div>').addClass('potionContainer').click(this.fillPotionClick);
-        for(var pIndex = 0; pIndex < this.color.length; pIndex++){
+        for(var potioncontent = 0; potioncontent < 3; potioncontent++){
             var randomnum = Math.floor(Math.random()*this.setNum+1);
+            var pIndex = Math.floor(Math.random()*copyColor.length);
             var temp=$('<div>',{
                 'css':{
-                    'background-color': this.color[pIndex],
+                    'background-color': copyColor[pIndex],
                 },
-                'text':this.color[pIndex][0].toUpperCase() + ' : ' + randomnum +' /',
+                'text': randomnum +' /',
                 'class': 'potionslot'
             })
             var tempText = $('<p>',{
-                'class': 'slotsleft ' + this.color[pIndex] + this.player,
+                'class': 'slotsleft ' + copyColor[pIndex] + this.player,
                 'text': randomnum
             })
             this.numbers.push(randomnum);
             this.dom.push(temp);
             $(temp).append(tempText);
             potionContainer.append(temp);
+            debugger;
+            copyColor.splice(pIndex, 1);
 
         };  
         return potionContainer;

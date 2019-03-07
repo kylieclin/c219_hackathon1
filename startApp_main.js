@@ -2,7 +2,7 @@ $(document).ready(startApp);
 
 var newGame;
 var potion ={
-    color: ['red', 'blue', 'yellow'],//, 'black'],
+    color: ['maroon', 'dimgray', 'darkcyan', 'goldenrod'],//, 'black'],
     setnum: 3
 }
 
@@ -12,4 +12,3 @@ function startApp(){
     newGame.createGameBoard();
     newGame.getGameRows();
 }
-
