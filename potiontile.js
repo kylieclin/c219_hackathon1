@@ -14,7 +14,6 @@ class Potion{
         this.fillPotionClick = this.fillPotionClick.bind(this);
     }
     renderPotion(){
-        debugger;
         var potionContainer=$('<div>').addClass('potionContainer').click(this.fillPotionClick);
         for(var pIndex = 0; pIndex < this.color.length; pIndex++){
             var randomnum = Math.floor(Math.random()*this.setNum+1);
@@ -38,7 +37,6 @@ class Potion{
         return potionContainer;
     }
     checkFilledStatus(){
-        debugger;
         var potionNum= this.numbers;
         var filled= true;
         for(var numIndex=0; numIndex < potionNum.length; numIndex++){
