@@ -19,18 +19,15 @@ class Dispenser{
 
         // generate an array of marbles with random colors
         this.marbleArray = {
-            colors:['blue','yellow','red','black','blue','yellow','red','black']
+            colors:['blue','yellow','yellow','yellow','blue','yellow','red','black']
         };
-
         for (var row_index=0; row_index < this.rowCount; row_index++){
             var currRow = new Row( this.marbleArray );
             this.rows.push(currRow);
             var rowDomElement = currRow.render();
             this.domElements.dispenser.append(rowDomElement);
             currRow.createMarbles();
-            
         }
-        
     }
 
     addMarbleToRow(){

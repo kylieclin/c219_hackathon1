@@ -24,7 +24,6 @@ class Game{
     
     }
     //2)generate potion
-       
     // generatePotion(){
     //     for(var player = 1; player <= this.player; player++){
     //     var newPotion = new Potion(this.potionData);
@@ -99,6 +98,7 @@ class Game{
         this.dispenserContainerDom.append(this.dispenser.render());
         this.dispenser.createRow();
     }
+
 }
 
 

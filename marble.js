@@ -14,7 +14,7 @@ class Marble{
     }
     handleClick(){
         console.log('marble ' + this.marbleColor + ' was clicked');
-        this.callbacks.click( this );
+        // this.callbacks.click( this );
     }
     render(){
         this.domElements.container = $("<div>",{
