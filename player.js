@@ -12,6 +12,7 @@ class Game{
         this.dispenserContainerDom=$('.board-container');
         this.totalRows = null;
         this.fillPotion = this.fillPotion.bind(this);
+        this.reset = this.reset.bind(this);
     }
     
     generatePotion(){
@@ -114,7 +115,7 @@ class Game{
         $('.reset-button').click(this.reset);
     }
     reset(){
-        
+        $(document).reload();
     }
 }
 

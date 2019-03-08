@@ -100,6 +100,7 @@ class Row{
         console.log(this.marblesInRow);
 
     }
+}
 
     removeMarbles(startPosInRow) {
         var totalNumMarblesInRow = this.marblesInRow.length;
