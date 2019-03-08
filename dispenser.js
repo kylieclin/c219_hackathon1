@@ -54,7 +54,7 @@ class Dispenser{
             });
         // for (var row_index=0; row_index < this.rowCount; row_index++){
         //     var currRow = new Row({
-        //         colors:['black','red','red','red','red','yellow','red','red','red',],
+        //         colors:['blue','blue','red','red','yellow','red','blue','blue','yellow'],
         //         callbacks:{
         //             addMarble:this.addMarbleToRow,
         //             removeMarble:this.removeMarbleFromRow,
@@ -72,7 +72,6 @@ class Dispenser{
             this.collectedMarbles =  row.collectedMarbles;
             this.playerCallback();
         }
- 
     }
     addMarbleToRow(createMarbles,callback){
         var randomIndex = Math.floor(Math.random()*this.possibleColorsLeft.length);
