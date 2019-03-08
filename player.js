@@ -11,33 +11,26 @@ class Game{
         this.dispenser = null;
         this.dispenserContainerDom=$('.board-container');
         this.totalRows = null;
+        this.fillPotion = this.fillPotion.bind(this);
+        this.reset = this.reset.bind(this);
     }
     
-     generatePotion(){
-        debugger;
+    generatePotion(){
         for(var player = 0; player < this.player; player++){
-        var newPotion = new Potion(this.potionData, player);
+        var newPotion = new Potion(this.potionData, player, this.fillPotion);
         var potionNeedtoRender= newPotion.renderPotion();
         this.playerpotions.push(newPotion);
+        console.log(newPotion);
         var playIndex = '.player'+ player+'-has';
         $(playIndex).append(potionNeedtoRender);
         }
+        this.selectPlay(); // randomly select
     }
-    checkPotion(){
-        this.potion.checkFillStatus();
-    }
-    changePlayer(){
-        if(firstplayer){
-            //firstplayer play
-            firstplayer = true;
-        } else {
-            //secondplayer play
-            firstplayer = false;
-        }
-    }
+
     createGameBoard(){
-        this.dispenser = new Dispenser(9);
+        this.dispenser = new Dispenser(5, this.domForCollectMarbles);
         this.dispenserContainerDom.append(this.dispenser.render());
+        this.dispenser.randomlyCreateRowColors();
         this.dispenser.createRow();
     }
     getGameRows(){
@@ -46,103 +39,84 @@ class Game{
     checkMarbles(){
         
     }
-
-    //click (event listener)
-    addEventListener(){
-        //.click to pick the potion
-        //.click to pick marbles
-        //.click to move the marbles
-    }    
-    
-    //1)generate marbles
-    generateMarble(){
-        //get the marble datas from main.js s
-        //pass into class marble
-    
-    }
-    //2)generate potion
-    // generatePotion(){
-    //     for(var player = 1; player <= this.player; player++){
-    //     var newPotion = new Potion(this.potionData);
-    //     var potionNeedtoRender= newPotion.renderPotion();
-    //     var playIndex = '.player'+ player+'-has';
-    //     $(playIndex).append(potionNeedtoRender);
-    //     }
-    // }
-
-    // checkPotion(){
-    //     this.potion.checkFillStatus();
-    // }
-
-    
-
-
-
-
-
-
-
-    
-        //click (event listener)
-        addEventListener(){
-            //.click to pick the potion
-            //.click to pick marbles
-            //.click to move the marbles
-        }    
-        
-        //1)generate marbles
-        generateMarble(){
-            //get the marble datas from main.js s
-            //pass into class marble
-        
+  
+    checkWin(checkFilled){
+        if(checkFilled){
+            $('#modal').toggleClass('hide');
+            console.log('win!!!!!!!!!!!!!');
         }
-
-    //4)pick/show potions
-        //let player to pick potions?
-        //place the potion to the player's box
-    // pickPotion(){
-    //     //player take turns pick potion
-    //     //click to choose
-    // }
-    //5)pick marbles
-    pickMarble(){
-        //pick marbles
-        //put the marbles in the marble container
     }
-    
-    //6)show picked/earned marbles
-    renderPickedMarbles(){
-        //get total marbles from the collected marble container
-        //get mouse position
-        //call the get marbles function
-        //move the marbles as call back
-        //give up the marble
+    fillPotion(potion){
+        var marblesArr = this.dispenser.collectedMarbles;
+        debugger;
+        var marbles = marblesArr.concat(); //copy the marbles array for slice
+        for(var MIndex = 0; MIndex < marblesArr.length; MIndex++){
+            for(var colorIndex =0; colorIndex < potion.color.length; colorIndex++){
+                console.log(potion.numbers);
+                if(marblesArr[MIndex].marbleColor === potion.color[colorIndex] && potion.numbers[colorIndex] > 0){
+                    potion.numbers[colorIndex] -=1;
+                    console.log(potion.numbers);
+                    marbles.splice(MIndex, 1);
+                    var textClass = '.' + potion.color[colorIndex] + potion.player;
+                    $(textClass).text(potion.numbers[colorIndex]);
+                    console.log(marbles);
+                }
+            }
+        }
+        this.changePlayer(potion);
+        var checkFilled = potion.checkFilledStatus();
+        this.checkWin(checkFilled);
+        console.log('Filled is: ' + checkFilled);//should return this somewhere;
+        return marbles; //the leftover marbles
     }
-    
-    //7)move marbles
-        //flusk that holds three marbles
-        //get the current potion data and detail for potions that you can hold in
-        //move marbles from the marble comtainer to the player's panel   
-    moveMarble(){
-        //get the mouse poistion
-        //first click select the marble, second click move the marble
+    changePlayer(potion){
+        var player = potion.player;
+        console.log(player);
+        var currentPlay = '.player'+player+'-container'
+        if(player === 0){
+            var nextPlay = '.player1-container';
+        } else {
+            var nextPlay = '.player0-container';
+        }
+        $(currentPlay).css({
+                'opacity': '0.1',
+                'pointer-events': 'none'
+            });
+        $(nextPlay).css({
+            'opacity': '1',
+            'pointer-events': 'auto'
+        });
+        $('.board-container').css('pointer-events', 'auto');
+        $('.collector-box').empty();
+        // currPlayerDone = true;
     }
-    
-    //8)check player's potion
-        // reveal the portion once all the marbles are collect
-        //add scores
-        //and change player after done
-
-    
-    winGame(){
-        //win the game
-        //render status (count score)
-        //default set to if any potion is full?
+    selectPlay(){
+        var player = Math.floor(Math.random()*2);
+        var currentPlay = '.player'+player+'-container';
+        $(currentPlay).css({
+            'opacity': '0.1',
+            'pointer-events': 'none'
+        });
     }
-    
-    //reset(extra)
-
-
+    domForCollectMarbles(){
+        //debugger;
+        var marblesArr = this.collectedMarbles;
+        for(var colorIndex = 0 ; colorIndex < marblesArr.length; colorIndex++){
+            var colorDiv = $('<div>',{
+                css:{
+                    'background-color' : marblesArr[colorIndex].marbleColor,
+                },
+                class: 'collectedMarbles'
+            })
+            $('.collector-box').append(colorDiv);
+        }
+    }
+    addEventListener(){
+        $('.reset-button').click(this.reset);
+    }
+    reset(){
+        $(document).reload();
+    }
 }
 
 

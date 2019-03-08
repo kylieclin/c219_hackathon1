@@ -1,45 +1,62 @@
 class Potion{
 
-    constructor(potionInfo, player){
-
-        this.color= potionInfo.color;
-        this.numbers= potionInfo.numbers;
+    constructor(potionInfo, player, callback){
+        
+        this.dataColor = potionInfo.color;
+        this.setNum = potionInfo.setnum;
+        this.numbers= [];
+        this.color=[];
         this.dom = [];
         this.player = player;
+        this.callback = {
+            click: callback
+        }
         this.renderPotion = this.renderPotion.bind(this);
+        this.fillPotionClick = this.fillPotionClick.bind(this);
     }
     renderPotion(){
-        var potionContainer=$('<div>').addClass('potionContainer');
-        for(var pIndex = 0; pIndex < this.color.length; pIndex++){
+        //debugger;
+        var copyColor = this.dataColor.concat();
+        var potionContainer=$('<div>').addClass('potionContainer').click(this.fillPotionClick);
+        for(var potioncontent = 0; potioncontent < 3; potioncontent++){
+            var randomnum = Math.floor(Math.random()*this.setNum+1);
+            var pIndex = Math.floor(Math.random()*copyColor.length);
             var temp=$('<div>',{
                 'css':{
-                    'background-color': this.color[pIndex],
+                    'background-color': copyColor[pIndex],
                 },
-                'text':this.numbers[pIndex],
+                'text': randomnum +' /',
                 'class': 'potionslot'
             })
             var tempText = $('<p>',{
-                'class': 'slotsleft ' + this.color[pIndex] + this.player,
-                'text': this.numbers[pIndex]
+                'class': 'slotsleft ' + copyColor[pIndex] + this.player,
+                'text': randomnum
             })
-            
+            this.numbers.push(randomnum);
+            this.color.push(copyColor[pIndex]);
+            console.log('numbers:' + this.numbers + ' color:' + this.color);
             this.dom.push(temp);
             $(temp).append(tempText);
             potionContainer.append(temp);
+        //    debugger;
+            copyColor.splice(pIndex, 1);
 
         };  
-
         return potionContainer;
-    }    
+    }
     checkFilledStatus(){
-        debugger;
         var potionNum= this.numbers;
-        var filled=null;
-        for(var numIndex=0; numIndex < potionNum,length; numIndex++){
+        var filled= true;
+        for(var numIndex=0; numIndex < potionNum.length; numIndex++){
             if(potionNum[numIndex] != 0){
-                return filled = false;
+                filled = false;
+                return filled;
             }
         }
-        return filled = true;
+        return filled;
     }
+    fillPotionClick(){
+        this.callback.click(this);
+    }
+
 }

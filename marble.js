@@ -1,6 +1,5 @@
 
 class Marble{
-    debugger;
     constructor( color, clickCallback ){
         this.marbleColor = color;
         this.callbacks = {
@@ -13,9 +12,23 @@ class Marble{
         } 
     }
     handleClick(){
+
+        $('.board-container').css('pointer-events', 'none');
         console.log('marble ' + this.marbleColor + ' was clicked');
-        // console.log(this.domElements.container.parent());
-        this.callbacks.click(this,this.domElements.container.parent());
+        //this.clickCallback();
+        this.callbacks.click(this);
+
+        // if (currPlayerDone == false) {
+        //     console.log('Current Player is not finished - wait for your turn');
+        //     return;
+        // } else {
+        //     // switch to next player
+        //     if (currPlayer = 'A') {
+        //         currPlayer = 'B';
+        //     }  else {currPlayer = 'A';}
+        // }
+        //    this.callbacks.click(this);
+
     }
     getColor(){
         return this.marbleColor;

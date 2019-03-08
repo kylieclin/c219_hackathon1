@@ -1,9 +1,12 @@
 $(document).ready(startApp);
 
+var currPlayer = 'A';
+var currPlayerDone = false;
+
 var newGame;
 var potion ={
-    color: ['red', 'blue', 'yellow'],//, 'black'],
-    numbers: [1,2,3]
+    color: ['red', 'blue', 'yellow'],
+    setnum: 3
 }
 
 function startApp(){
@@ -12,4 +15,3 @@ function startApp(){
     newGame.createGameBoard();
     newGame.getGameRows();
 }
-
