@@ -199,9 +199,10 @@ body {
 
 .collectedMarbles{
     border-radius: 50px;
-    height:10%;
-    width: 10%;
+    height:50px;
+    width: 50px;
     display: inline-block;
+    margin: 1px;
 }
 
 .divforposition{

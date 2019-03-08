@@ -12,6 +12,7 @@ class Marble{
         }
     }
     handleClick(){
+        $('.board-container').css('pointer-events', 'none');
         console.log('marble ' + this.marbleColor + ' was clicked');
         this.callbacks.click(this);
     }

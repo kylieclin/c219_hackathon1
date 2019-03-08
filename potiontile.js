@@ -2,9 +2,10 @@ class Potion{
 
     constructor(potionInfo, player, callback){
         
-        this.color= potionInfo.color;
+        this.dataColor = potionInfo.color;
         this.setNum = potionInfo.setnum;
         this.numbers= [];
+        this.color=[];
         this.dom = [];
         this.player = player;
         this.callback = {
@@ -15,7 +16,7 @@ class Potion{
     }
     renderPotion(){
         debugger;
-        var copyColor = this.color.concat();
+        var copyColor = this.dataColor.concat();
         var potionContainer=$('<div>').addClass('potionContainer').click(this.fillPotionClick);
         for(var potioncontent = 0; potioncontent < 3; potioncontent++){
             var randomnum = Math.floor(Math.random()*this.setNum+1);
@@ -32,6 +33,8 @@ class Potion{
                 'text': randomnum
             })
             this.numbers.push(randomnum);
+            this.color.push(copyColor[pIndex]);
+            console.log('numbers:' + this.numbers + ' color:' + this.color);
             this.dom.push(temp);
             $(temp).append(tempText);
             potionContainer.append(temp);
@@ -55,4 +58,5 @@ class Potion{
     fillPotionClick(){
         this.callback.click(this);
     }
+
 }

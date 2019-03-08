@@ -8,8 +8,10 @@ class Dispenser{
         }
         this.collectedMarbles=[];
         this.domElements = {dispenser:null};
+        this.playerCallback = clickCallback
         this.handleMarbleClick = this.handleMarbleClick.bind( this );
         this.addMarbleToRow = this.addMarbleToRow.bind(this);
+        this.getRows = this.getRows.bind(this);
         this.possibleColorsLeft = [];
     }
     handleMarbleClick(){
@@ -46,7 +48,8 @@ class Dispenser{
                 colors:this.rowColors[`row${row_index}`],
                 callbacks:{
                     addMarble:this.addMarbleToRow,
-                    removeMarble:this.removeMarbleFromRow
+                    removeMarble:this.removeMarbleFromRow,
+                    getRows:this.getRows
                 }
             });
         // for (var row_index=0; row_index < this.rowCount; row_index++){
@@ -65,7 +68,11 @@ class Dispenser{
         }
     }
     getRows(row){
-        return row.collectedMarbles;
+        if(row){
+            this.collectedMarbles =  row.collectedMarbles;
+            this.playerCallback();
+        }
+ 
     }
     addMarbleToRow(createMarbles,callback){
         var randomIndex = Math.floor(Math.random()*this.possibleColorsLeft.length);
@@ -74,9 +81,9 @@ class Dispenser{
         var marbleImage = newMarble.render();
         createMarbles(marbleImage,newMarble);
     }
-    getCollectedMarbles(){
-        this.collectedMarbles = []
-    }
+    // getCollectedMarbles(){
+    //     this.collectedMarbles = []
+    // }
 
     render(){
         this.domElements.dispenser = $("<div>",{
