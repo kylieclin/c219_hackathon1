@@ -39,7 +39,7 @@ class Game{
     checkMarbles(){
         
     }
- 
+  
     checkWin(checkFilled){
         if(checkFilled){
             $('#modal').toggleClass('hide');
