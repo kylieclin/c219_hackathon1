@@ -27,6 +27,7 @@ class Row{
         }
     }
     checkingExplosion(marbleClicked){
+        console.log(this.marblesInRow)
         this.collectedMarbles = [marbleClicked];
         this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
         marbleClicked.domElements.container.hide();
@@ -92,11 +93,12 @@ class Row{
                     lookingRight = false;
                 }
             }
-           
-        } 
-        console.log(this.collectedMarbles)
+        console.log(this.collectedMarbles);
         this.removeMarbles(lookingLeftPosition+2);
+        console.log(this.marblesInRow);
         this.callbacks.getRows(this);
+        console.log(this.marblesInRow);
+
     }
 
     removeMarbles(startPosInRow) {

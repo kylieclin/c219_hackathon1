@@ -12,9 +12,22 @@ class Marble{
         }
     }
     handleClick(){
+
         $('.board-container').css('pointer-events', 'none');
         console.log('marble ' + this.marbleColor + ' was clicked');
         this.callbacks.click(this);
+
+        // if (currPlayerDone == false) {
+        //     console.log('Current Player is not finished - wait for your turn');
+        //     return;
+        // } else {
+        //     // switch to next player
+        //     if (currPlayer = 'A') {
+        //         currPlayer = 'B';
+        //     }  else {currPlayer = 'A';}
+        // }
+        //    this.callbacks.click(this);
+
     }
     getColor(){
         return this.marbleColor;
