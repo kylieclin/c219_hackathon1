@@ -36,6 +36,9 @@ class Row{
         var lookingRight = true;
         var lookingLeftPosition=null;
         var lookingRightPosition=null;
+        if (marbleClickedIndex === '8'){
+            return;
+        }
         if (marbleRow[marbleClickedIndex+1].marbleColor===marbleRow[marbleClickedIndex-1].marbleColor){
             this.collectedMarbles.push(marbleRow[marbleClickedIndex+1],marbleRow[marbleClickedIndex-1])
             this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
@@ -47,6 +50,9 @@ class Row{
             lookingRightPosition=marbleClickedIndex+2
             console.log('FIRST EXPLOSION')
             while(lookingLeft && lookingRight){
+                if (lookingLeftPosition<0){
+                    lookingLeft=false;
+                }
                 while (lookingLeftPosition>=0  && lookingLeft){
                     if (marbleRow[lookingLeftPosition].marbleColor===compareColorTo){
                         this.collectedMarbles.push(marbleRow[lookingLeftPosition])
@@ -68,6 +74,9 @@ class Row{
                     }
                 }
                 if (!lookingRight && !lookingLeft){
+                    if (lookingLeftPosition<0){
+                        break;
+                    }
                     if (marbleRow[lookingRightPosition].marbleColor === marbleRow[lookingLeftPosition].marbleColor){
                         this.collectedMarbles.push(marbleRow[lookingRightPosition],marbleRow[lookingLeftPosition])
                         this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
