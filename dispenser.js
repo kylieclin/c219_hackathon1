@@ -6,6 +6,7 @@ class Dispenser{
         this.parent = '.board-container';
         this.rowColors = {
         }
+        this.collectedMarbles=[];
         this.domElements = {dispenser:null};
         this.handleMarbleClick = this.handleMarbleClick.bind( this );
         this.addMarbleToRow = this.addMarbleToRow.bind(this);
@@ -37,8 +38,9 @@ class Dispenser{
 
         // generate an array of marbles with random colors
         // this.rowColors = {
-        //     colors:['yellow','blue','yellow','yellow','yellow','blue','yellow','black','yellow']
+        //     colors:['red','red','black','black','black','red','yellow','red','blue'];
         // };
+        // var test = {colors:['red','red','black','black','black','red','yellow','red','blue']};
         for (var row_index=0; row_index < this.rowCount; row_index++){
             var currRow = new Row({
                 colors:this.rowColors[`row${row_index}`],
@@ -47,14 +49,23 @@ class Dispenser{
                     removeMarble:this.removeMarbleFromRow
                 }
             });
+        // for (var row_index=0; row_index < this.rowCount; row_index++){
+        //     var currRow = new Row({
+        //         colors:['black','red','red','red','red','yellow','red','red','red',],
+        //         callbacks:{
+        //             addMarble:this.addMarbleToRow,
+        //             removeMarble:this.removeMarbleFromRow,
+        //             getRows:this.getRows
+        //         }
+        //     });
             this.rows.push(currRow);
             var rowDomElement = currRow.render().addClass('row'+`${row_index}`);
             this.domElements.dispenser.append(rowDomElement);
             currRow.createMarbles();
         }
     }
-    getRows(){
-        return this.rows;
+    getRows(row){
+        return row.collectedMarbles;
     }
     addMarbleToRow(createMarbles,callback){
         var randomIndex = Math.floor(Math.random()*this.possibleColorsLeft.length);
@@ -63,11 +74,8 @@ class Dispenser{
         var marbleImage = newMarble.render();
         createMarbles(marbleImage,newMarble);
     }
-    removeMarbleFromRow(){
-    }
-    addRowToDispenser(){
-
-
+    getCollectedMarbles(){
+        this.collectedMarbles = []
     }
 
     render(){

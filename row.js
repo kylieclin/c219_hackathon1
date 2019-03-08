@@ -5,96 +5,115 @@ class Row{
             row:null
         }
         this.marblesInRow = [];
+        this.collectedMarbles=[];
         // this.handleMarbleClick = this.handleMarbleClick.bind(this);
-        this.removeMarble = this.removeMarble.bind(this);
+        this.checkingExplosion = this.checkingExplosion.bind(this);
         this.createMarbles = this.createMarbles.bind(this);
         this.callbacks = {
             addMarbles:options.callbacks.addMarble,
-            removeMarble:options.callbacks.removeMarble
+            removeMarble:options.callbacks.removeMarble,
+            getRows:options.callbacks.getRows
         }
-
     }
 
 
     updateMarbleRow(colorOfMarbles){
         for (var marbleIndex = 0;marbleIndex<this.marbleColors.length; marbleIndex++){
-            var newMarble = new Marble(colorOfMarbles[marbleIndex],this.removeMarble)
+            var newMarble = new Marble(colorOfMarbles[marbleIndex],this.checkingExplosion)
             var marbleImage = newMarble.render()
             this.domElements.row.append(marbleImage);
             this.marblesInRow.push(newMarble);
         }
     }
-    updateCopy(){
-        return this.marblesInRow.slice(0)
-    }
-    removeMarble(marbleClicked){
-        var copyOfArray = this.marblesInRow.slice(0)
-        // marbleClicked.domElements.container.remove();
-        var collectedMarbles = [marbleClicked];
-        this.callbacks.addMarbles(this.createMarbles,this.removeMarble);
-        copyOfArray = this.updateCopy();
-        var targetedIndex = copyOfArray.indexOf(marbleClicked);
+    checkingExplosion(marbleClicked){
+        this.collectedMarbles = [marbleClicked];
+        this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
+        marbleClicked.domElements.container.hide();
+        var targetedIndex = this.marblesInRow.indexOf(marbleClicked);
         var lookingLeft=true;
         var lookingRight=true;
         //we dont know how many times we are looping.. so a while loop
         //while we are still looking left, (looking left is true), (looking right is true)
-        if(copyOfArray[targetedIndex-1].marbleColor === copyOfArray[targetedIndex+1].marbleColor){
+        if(this.marblesInRow[targetedIndex-1].marbleColor === this.marblesInRow[targetedIndex+1].marbleColor){
             var lookingLeftPosition=targetedIndex-2
             var lookingRightPosition=targetedIndex+2
             console.log('explosion')
-            collectedMarbles.push(copyOfArray[targetedIndex-1],copyOfArray[targetedIndex+1])
-            this.callbacks.addMarbles(this.createMarbles)
+            this.collectedMarbles.push(this.marblesInRow[targetedIndex-1],this.marblesInRow[targetedIndex+1]);
+            this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
+            this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
+            this.marblesInRow[targetedIndex-1].domElements.container.hide();
+            this.marblesInRow[targetedIndex+1].domElements.container.hide();
             while(lookingLeft && lookingRight){
                 while(lookingLeft && lookingLeftPosition>=0){
-                    if (copyOfArray[lookingLeftPosition].marbleColor===copyOfArray[targetedIndex-1].marbleColor){
-                        collectedMarbles.push(copyOfArray[lookingLeftPosition]);
-                        // this.callbacks.addMarbles(this.createMarbles)
+                    if (this.marblesInRow[lookingLeftPosition].marbleColor===this.marblesInRow[targetedIndex-1].marbleColor){
+                        this.collectedMarbles.push(this.marblesInRow[lookingLeftPosition]);
+                        this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion)
+                        this.marblesInRow[lookingLeftPosition].domElements.container.hide();
                         lookingLeftPosition--
-                    } else {
+                    } else if(lookingLeftPosition === 0){
+                        if(this.marblesInRow[lookingLeftPosition].marbleColor===this.marblesInRow[lookingLeftPosition+1].marbleColor){
+                            this.collectedMarbles.push(this.marblesInRow[lookingLeftPosition]);
+                            this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion)
+                            this.marblesInRow[lookingLeftPosition].domElements.container.hide();
+                            lookingLeft=false;
+                            lookingLeftPosition--
+                        } else {
+                            lookingLeftPosition--
+                        }
+                    }else{
                         lookingLeft=false;
                     }
                 }
                 while(lookingRight && lookingRightPosition<=this.marbleColors.length){
-                    if (copyOfArray[lookingRightPosition].marbleColor===copyOfArray[targetedIndex+1].marbleColor){
-                        collectedMarbles.push(copyOfArray[lookingRight]);
-                        // this.callbacks.addMarbles(this.createMarbles)
+                    if (this.marblesInRow[lookingRightPosition].marbleColor===this.marblesInRow[targetedIndex+1].marbleColor){
+                        this.collectedMarbles.push(this.marblesInRow[lookingRightPosition]);
+                        this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion)
+                        this.marblesInRow[lookingRightPosition].domElements.container.hide();
                         lookingRightPosition++
-                    } else {
+                    } else{
                         lookingRight=false;
                     }
                 }
                 if (!lookingLeft && !lookingRight){
-                    if (copyOfArray[lookingLeftPosition].marbleColor===copyOfArray[lookingRightPosition].marbleColor){
-                        collectedMarbles.push(copyOfArray[lookingLeftPosition],copyOfArray[lookingRightPosition]);
-                        // this.callbacks.addMarbles(this.createMarbles)
+                    if (this.marblesInRow[lookingLeftPosition].marbleColor===this.marblesInRow[lookingRightPosition].marbleColor){
+                        this.collectedMarbles.push(this.marblesInRow[lookingLeftPosition],this.marblesInRow[lookingRightPosition]);
+                        this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
+                        this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion);
+                        this.marblesInRow[lookingLeftPosition].domElements.container.hide();
+                        this.marblesInRow[lookingRightPosition].domElements.container.hide();
                         lookingLeft = true;
                         lookingLeftPosition--
                         lookingRight = true;
                         lookingRightPosition++
                     }
                 }
+                if (lookingRightPosition>this.marbleColors.length){
+                    lookingRight = false;
+                }
             }
-            console.log(collectedMarbles)
+            console.log(this.collectedMarbles)
+            this.removeMarbles(lookingLeftPosition+2);
+            this.callbacks.getRows(this);
         }
-
-
-
-
-
-        // if(this.marblesInRow[targetedIndex-1].marbleColor === this.marblesInRow[targetedIndex+1].marbleColor){
-        //     collectedMarbles.push(this.marblesInRow[targetedIndex-1],this.marblesInRow[targetedIndex+1].marbleColor)
-        //     console.log('EXPLOSIONN');
-        //     if (this.marblesInRow[])
-        // }
-        //dont forget to actually remove them from the row later
     }
+
+    removeMarbles(startPosInRow) {
+        var totalNumMarblesInRow = this.marblesInRow.length;
+        var numberToRemove = this.collectedMarbles.length;
+        if(startPosInRow < 0 ){
+            startPosInRow = 0;
+        }
+        this.marblesInRow.splice(startPosInRow, numberToRemove);
+        return;
+    }
+
     createMarbles(marble,marbleObj){//if something is passed in..create one new marble and append to row
         if(marble){
             this.domElements.row.append(marble);
             this.marblesInRow.push(marbleObj);
         } else{
             for (var marbleIndex = 0;marbleIndex<this.marbleColors.length; marbleIndex++){
-                var newMarble = new Marble(this.marbleColors[marbleIndex],this.removeMarble);
+                var newMarble = new Marble(this.marbleColors[marbleIndex],this.checkingExplosion);
                 var marbleImage = newMarble.render();
                 this.domElements.row.append(marbleImage);
                 this.marblesInRow.push(newMarble);
