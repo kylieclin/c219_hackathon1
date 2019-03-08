@@ -9,7 +9,7 @@ class Marble{
         this.domElements = {
             container: null,
             marble:null
-        }
+        } 
     }
     handleClick(){
 

@@ -99,7 +99,6 @@ class Game{
         });
     }
     domForCollectMarbles(){
-        debugger;
         var marblesArr = this.collectedMarbles;
         for(var colorIndex = 0 ; colorIndex < marblesArr.length; colorIndex++){
             var colorDiv = $('<div>',{
