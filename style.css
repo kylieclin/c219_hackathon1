@@ -1,6 +1,6 @@
 body {
     margin:0;
-
+    font-family: 'Coiny', cursive;
     font-size:0;
 }
 .game-page{
@@ -172,10 +172,13 @@ body {
 }
 
 .modal{
-    height:500px;
-    width:500px;
+    height:60%;
+    width:60%;
     font-size:25px;
     background-color: limegreen;
+    background-image: url('image/winimg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; 
     position: absolute;
     top:50%;
     left: 50%;
@@ -184,13 +187,34 @@ body {
     
 }
 
+.modaltext{
+    font-size: 3rem;
+    color: rgb(29, 147, 59);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
 .hide{
     display: none;
 }
 
 .collectedMarbles{
-    border-radius: 50%;
+    border-radius: 50px;
     height:10%;
     width: 10%;
     display: inline-block;
+}
+
+.divforposition{
+    height: 70%;
+    width: 80%;
+}
+
+.reset-button{
+    height: 10%;
+    width: 20%;
+    font-size: 2rem;
+    color: white;
+    font-family: 'Coiny', cursive;
+    background-color: rgb(29, 147, 59);
+    border: 2px solid #c63d95;
 }
