@@ -43,13 +43,7 @@ class Game{
         if(checkFilled){
             $('#modal').toggleClass('hide');
             console.log('win!!!!!!!!!!!!!');
-        } else {
-            console.log('not won yet!!!!!!!!!!keep Playing!!!!!!!');
         }
-        
-        //win the game
-        //render status (count score)
-        //default set to if any potion is full?
     }
     fillPotion(potion){
         var marblesArr = [{marblecolor: 'red'},{marblecolor: 'yellow'},{marblecolor: 'blue'}]; //fake
