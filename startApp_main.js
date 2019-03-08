@@ -1,10 +1,14 @@
 $(document).ready(startApp);
 
+var currPlayer = 1;
+var currPlayerDone = false;
+
 var newGame;
 var potion ={
     color: ['red', 'blue', 'yellow'],//, 'black'],
-    numbers: [1,2,3]
+    setnum: 3
 }
+
 
 function startApp(){
     newGame = new Game(potion);

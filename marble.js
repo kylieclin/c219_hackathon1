@@ -13,9 +13,17 @@ class Marble{
         } 
     }
     handleClick(){
-        console.log('marble ' + this.marbleColor + ' was clicked');
-        // console.log(this.domElements.container.parent());
-        this.callbacks.click(this,this.domElements.container.parent());
+
+        if (currPlayerDone == false){
+            console.log('Current Player is not finished - ignore this marble click');
+            return;
+            ) else {
+            currPlayer = 2;}
+        }
+
+    // console.log(this.domElements.container.parent());
+        this.callbacks.click(this);
+        // ,this.domElements.container.parent()
     }
     getColor(){
         return this.marbleColor;
