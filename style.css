@@ -35,7 +35,7 @@ body {
     box-sizing: border-box;
 }
 .marble-container{
-    border:1px solid black;
+    /* border:1px solid black; */
     height:100%;
     width:100%;
     box-sizing: border-box;
