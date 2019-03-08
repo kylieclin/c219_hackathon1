@@ -15,7 +15,6 @@ class Potion{
         this.fillPotionClick = this.fillPotionClick.bind(this);
     }
     renderPotion(){
-        debugger;
         var copyColor = this.dataColor.concat();
         var potionContainer=$('<div>').addClass('potionContainer').click(this.fillPotionClick);
         for(var potioncontent = 0; potioncontent < 3; potioncontent++){
@@ -38,7 +37,6 @@ class Potion{
             this.dom.push(temp);
             $(temp).append(tempText);
             potionContainer.append(temp);
-            debugger;
             copyColor.splice(pIndex, 1);
 
         };  
