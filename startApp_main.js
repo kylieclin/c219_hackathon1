@@ -1,5 +1,8 @@
 $(document).ready(startApp);
 
+var currPlayer = 'A';
+var currPlayerDone = false;
+
 var newGame;
 var potion ={
     color: ['red', 'blue', 'yellow'],
