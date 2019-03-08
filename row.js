@@ -7,13 +7,14 @@ class Row{
         this.marblesInRow = [];
         this.collectedMarbles=[];
         // this.handleMarbleClick = this.handleMarbleClick.bind(this);
-        this.checkingExplosion = this.checkingExplosion.bind(this);
+
         this.createMarbles = this.createMarbles.bind(this);
         this.callbacks = {
             addMarbles:options.callbacks.addMarble,
             removeMarble:options.callbacks.removeMarble,
             getRows:options.callbacks.getRows
-        }
+        }        
+        this.checkingExplosion = this.checkingExplosion.bind(this);
     }
 
 
@@ -92,12 +93,12 @@ class Row{
                     lookingRight = false;
                 }
             }
-        }
         console.log(this.collectedMarbles);
         this.removeMarbles(lookingLeftPosition+2);
         console.log(this.marblesInRow);
         this.callbacks.getRows(this);
         console.log(this.marblesInRow);
+
     }
 
     removeMarbles(startPosInRow) {

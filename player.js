@@ -27,7 +27,7 @@ class Game{
     }
 
     createGameBoard(){
-        this.dispenser = new Dispenser(5);
+        this.dispenser = new Dispenser(5, this.domForCollectMarbles);
         this.dispenserContainerDom.append(this.dispenser.render());
         this.dispenser.randomlyCreateRowColors();
         this.dispenser.createRow();
@@ -46,13 +46,15 @@ class Game{
         }
     }
     fillPotion(potion){
-        var marblesArr = [{marblecolor: 'red'},{marblecolor: 'yellow'},{marblecolor: 'blue'}]; //fake
+        var marblesArr = this.dispenser.collectedMarbles;
         debugger;
         var marbles = marblesArr.concat(); //copy the marbles array for slice
         for(var MIndex = 0; MIndex < marblesArr.length; MIndex++){
             for(var colorIndex =0; colorIndex < potion.color.length; colorIndex++){
-                if(marblesArr[MIndex].marblecolor === potion.color[colorIndex] && potion.numbers[colorIndex] > 0){
+                console.log(potion.numbers);
+                if(marblesArr[MIndex].marbleColor === potion.color[colorIndex] && potion.numbers[colorIndex] > 0){
                     potion.numbers[colorIndex] -=1;
+                    console.log(potion.numbers);
                     marbles.splice(MIndex, 1);
                     var textClass = '.' + potion.color[colorIndex] + potion.player;
                     $(textClass).text(potion.numbers[colorIndex]);
@@ -83,6 +85,8 @@ class Game{
             'opacity': '1',
             'pointer-events': 'auto'
         });
+        $('.board-container').css('pointer-events', 'auto');
+        $('.collector-box').empty();
         // currPlayerDone = true;
     }
     selectPlay(){
@@ -93,20 +97,25 @@ class Game{
             'pointer-events': 'none'
         });
     }
-    domForCollectMarbles(marbles){
+    domForCollectMarbles(){
         debugger;
-        var marblesArr = [{marblecolor: 'red'},{marblecolor: 'yellow'},{marblecolor: 'blue'}]; //fake
+        var marblesArr = this.collectedMarbles;
         for(var colorIndex = 0 ; colorIndex < marblesArr.length; colorIndex++){
             var colorDiv = $('<div>',{
                 css:{
-                    'background-color' : marblesArr[colorIndex].marblecolor,
+                    'background-color' : marblesArr[colorIndex].marbleColor,
                 },
                 class: 'collectedMarbles'
             })
             $('.collector-box').append(colorDiv);
         }
     }
-
+    addEventListener(){
+        $('.reset-button').click(this.reset);
+    }
+    reset(){
+        
+    }
 }
 
 
