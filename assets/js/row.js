@@ -47,7 +47,7 @@ class Row{
         nextRightCheck.position = clickedMarbleIndex + 1;
         nextRightCheck.color = this.marblesInRow[nextRightCheck.position].marbleColor ;
 
-debugger;
+
         //===================================================================================================
         // Check NEW color explosion - store color, remove marbles, refill marbles
         //===================================================================================================
