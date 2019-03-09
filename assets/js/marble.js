@@ -8,32 +8,24 @@ class Marble{
         this.handleClick = this.handleClick.bind( this );
         this.domElements = {
             container: null,
-            marble:null
+            marble:null,
+            emptyContainer:null
         } 
     }
     handleClick(){
-       
-        this.callbacks.click(this);
         $('.board-container').css('pointer-events', 'none');
         $('.marble').toggleClass('marbleanima');
         $('.playerText').text('Click potion to collect marbles');
         console.log('marble ' + this.marbleColor + ' was clicked');
-        
-
-        // if (currPlayerDone == false) {
-        //     console.log('Current Player is not finished - wait for your turn');
-        //     return;
-        // } else {
-        //     // switch to next player
-        //     if (currPlayer = 'A') {
-        //         currPlayer = 'B';
-        //     }  else {currPlayer = 'A';}
-        // }
-        //    this.callbacks.click(this);
-
+        this.callbacks.click(this);
     }
     getColor(){
         return this.marbleColor;
+    }
+    makeEmptyContainer(){
+        this.domElements.emptyContainer = $("<div>",{
+            'class': 'marble-container'
+        });
     }
     render(){
         this.domElements.container = $("<div>",{
