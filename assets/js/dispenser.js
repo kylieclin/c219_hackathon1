@@ -21,7 +21,7 @@ class Dispenser{
         this.callbacks.click( this );
     }
 
-    randomlyCreateRowColors(){
+    randomlyCreateRowColors(listOfNumbersPerRow){
         var colors =  ['crimson', 'Gold', 'DodgerBlue', 'DarkSlateGray'];
         var randomRowColors = {}
         for (var iterations=0;iterations<20;iterations++){
