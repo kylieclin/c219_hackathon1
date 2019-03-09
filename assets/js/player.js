@@ -30,16 +30,11 @@ class Game{
     createGameBoard(){
         this.dispenser = new Dispenser(5, this.domForCollectMarbles);
         this.dispenserContainerDom.append(this.dispenser.render());
-        this.dispenser.randomlyCreateRowColors();
-        this.dispenser.createRow();
+        this.dispenser.determineMarblesInRowAmount();
     }
     getGameRows(){
         this.totalRows =this.dispenser.getRows();
     }
-    checkMarbles(){
-        
-    }
-  
     checkWin(checkFilled){
         if(checkFilled){
             $('#modal').toggleClass('hide');
