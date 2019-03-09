@@ -13,5 +13,13 @@ function startApp(){
     newGame = new Game(potion);
     newGame.createGameBoard();
     newGame.getGameRows();
-    newGame.addEventListener();
+    $('.button').click(showHideModal);
+    newGame.addEventListener(); 
 }
+
+function showHideModal(){
+    $('.popupContainer').toggleClass('hide');
+}
+
+
+
