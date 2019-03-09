@@ -2,6 +2,7 @@ class Potion{
 
     constructor(potionInfo, player, callback){
         
+        this.currentPotion = [0,0,0,0];
         this.dataColor = potionInfo.color;
         this.setNum = potionInfo.setnum;
         this.numbers= [];
@@ -18,24 +19,28 @@ class Potion{
         var copyColor = this.dataColor.concat();
         var potionContainer=$('<div>').addClass('potionContainer').click(this.fillPotionClick);
         for(var potioncontent = 0; potioncontent < 3; potioncontent++){
-            var randomnum = Math.floor(Math.random()*this.setNum+1);
+            var randomnum = Math.floor(Math.random()*this.setNum+2);
             var pIndex = Math.floor(Math.random()*copyColor.length);
             var temp=$('<div>',{
                 'css':{
                     'background-color': copyColor[pIndex],
                 },
-                'text': randomnum +' /',
                 'class': 'potionslot'
             })
-            var tempText = $('<p>',{
+            var tempText = $('<p>',{ //text for change default 0
                 'class': 'slotsleft ' + copyColor[pIndex] + this.player,
-                'text': randomnum
+                'text': this.currentPotion[pIndex]
             })
+            var fixedText = $('<p>',{ //text for numbers of target marbles
+                'class': 'slotsleft ',
+                'text': '/'+randomnum
+            })
+            
             this.numbers.push(randomnum);
             this.color.push(copyColor[pIndex]);
             console.log('numbers:' + this.numbers + ' color:' + this.color);
+            $(temp).append(tempText, fixedText);
             this.dom.push(temp);
-            $(temp).append(tempText);
             potionContainer.append(temp);
             copyColor.splice(pIndex, 1);
 
