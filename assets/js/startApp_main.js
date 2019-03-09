@@ -5,13 +5,21 @@ var currPlayerDone = false;
 
 var newGame;
 var potion ={
-    color: ['red', 'blue', 'yellow'],
-    setnum: 3
+    color: ['crimson', 'Gold', 'DodgerBlue', 'DarkSlateGray'],
+    setnum: 5
 }
 
 function startApp(){
     newGame = new Game(potion);
-    newGame.generatePotion();
     newGame.createGameBoard();
     newGame.getGameRows();
+    $('.button').click(showHideModal);
+    newGame.addEventListener(); 
 }
+
+function showHideModal(){
+    $('.popupContainer').toggleClass('hide');
+}
+
+
+

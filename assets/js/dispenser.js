@@ -20,8 +20,9 @@ class Dispenser{
         console.log('marble was clicked');
         this.callbacks.click( this );
     }
-    randomlyCreateRowColors(listOfNumbersPerRow){
-        var colors = ['red','blue','yellow','black'];
+
+    randomlyCreateRowColors(){
+        var colors =  ['crimson', 'Gold', 'DodgerBlue', 'DarkSlateGray'];
         var randomRowColors = {}
         for (var iterations=0;iterations<20;iterations++){
             this.possibleColorsLeft = this.possibleColorsLeft.concat(colors);

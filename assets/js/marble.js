@@ -14,6 +14,8 @@ class Marble{
     }
     handleClick(){
         $('.board-container').css('pointer-events', 'none');
+        $('.marble').toggleClass('marbleanima');
+        $('.playerText').text('Click potion to collect marbles');
         console.log('marble ' + this.marbleColor + ' was clicked');
         this.callbacks.click(this);
     }
