@@ -8,7 +8,7 @@ class Dispenser{
         }
         this.collectedMarbles=[];
         this.domElements = {dispenser:null};
-        this.playerCallback = clickCallback
+        this.playerCallback = clickCallback;
         this.handleMarbleClick = this.handleMarbleClick.bind( this );
         this.addMarbleToRow = this.addMarbleToRow.bind(this);
         this.getRows = this.getRows.bind(this);

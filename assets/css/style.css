@@ -61,7 +61,7 @@ body {
     font-size:1rem;
     background-color:#db90b7;
     height:30%;
-    background-image: url('image/logo.png');
+    background-image: url('../../image/logo.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: 100%;
@@ -70,7 +70,7 @@ body {
 .collector{
     height:70%;
     background-color:#db90b7;
-    background-image: url('image/professor.png');
+    background-image: url('../../image/professor.png');
     background-size: 55vh;
     background-repeat: no-repeat;
     background-position-x: 100%;
@@ -154,7 +154,7 @@ body {
     height:100%;
     display:inline-block;
     vertical-align: top;
-    background-image: url('image/potion.png');
+    background-image: url('../../image/potion.png');
     background-size: 10vh;
     background-position-x: 50%;
     background-position-y: 100%;
@@ -176,7 +176,7 @@ body {
     width:60%;
     font-size:25px;
     background-color: limegreen;
-    background-image: url('image/winimg.jpg');
+    background-image: url('../../image/winimg.jpg');
     background-size: cover;
     background-repeat: no-repeat; 
     position: absolute;
