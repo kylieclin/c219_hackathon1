@@ -3,7 +3,7 @@ class Row{
         this.marbleColors = options.colors;//list of colors so i can make marbles
         this.domElements={
             row:null
-        }
+        };
         this.marblesInRow = [];
         this.collectedMarbles=[];
         //this.handleMarbleClick = this.handleMarbleClick.bind(this);
@@ -73,7 +73,7 @@ debugger;
             //===================================================================================================
             // Check LEFT side - with the same color - continue checking until (1)no more match or (2)at the end
             //===================================================================================================
-            debugger;
+            //debugger;
             nextLeftCheck.position--;
             if (nextLeftCheck.position<0){
                 keepChecking = false;
@@ -115,14 +115,11 @@ debugger;
                 nextRightCheck.color = this.marblesInRow[nextRightCheck.position].marbleColor;
             }
         }
-
         console.log(this.collectedMarbles);
         console.log('startPosToRemove: ', startPosToRemove);
         this.removeMarbles(startPosToRemove);
         this.callbacks.getRows(this);
-
     }  // end of function checkExplosion
-
 
     updateMarbleRow(colorOfMarbles){
         for (var marbleIndex = 0;marbleIndex<this.marbleColors.length; marbleIndex++){
@@ -209,16 +206,6 @@ debugger;
 //     }
 // }
 
-    removeMarbles(startPosInRow) {
-        var totalNumMarblesInRow = this.marblesInRow.length;
-        var numberToRemove = this.collectedMarbles.length;
-        if(startPosInRow < 0 ){
-            startPosInRow = 0;
-        }
-        this.marblesInRow.splice(startPosInRow, numberToRemove);
-        return;
-    }
-
     createMarbles(marble,marbleObj){//if something is passed in..create one new marble and append to row
         if(marble){
             this.domElements.row.append(marble);
@@ -233,6 +220,25 @@ debugger;
             }
         }
     }
+
+    removeMarbles() {
+        for (var marbleIndex in this.collectedMarbles){
+            var currentMarble = this.collectedMarbles[marbleIndex];
+            var marbleIndexRemoval =this.marblesInRow.indexOf(currentMarble);
+            this.marblesInRow.splice(marbleIndexRemoval,1);
+        }
+    }
+
+    // removeMarbles(startPosInRow) {
+    //     var totalNumMarblesInRow = this.marblesInRow.length;
+    //     var numberToRemove = this.collectedMarbles.length;
+    //     if(startPosInRow < 0 ){
+    //         startPosInRow = 0;
+    //     }
+    //     this.marblesInRow.splice(startPosInRow, numberToRemove);
+    //     return;
+    // }
+
     render(){
         this.domElements.row = $('<div>',{
             class:"board-row",
