@@ -12,10 +12,13 @@ class Marble{
         } 
     }
     handleClick(){
-
-        $('.board-container').css('pointer-events', 'none');
-        console.log('marble ' + this.marbleColor + ' was clicked');
+        debugger;
         this.callbacks.click(this);
+        $('.board-container').css('pointer-events', 'none');
+        $('.marble').toggleClass('marbleanima');
+        $('.playerText').text('Click potion to collect marbles');
+        console.log('marble ' + this.marbleColor + ' was clicked');
+        
 
         // if (currPlayerDone == false) {
         //     console.log('Current Player is not finished - wait for your turn');
