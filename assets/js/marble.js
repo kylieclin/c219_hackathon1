@@ -12,7 +12,7 @@ class Marble{
         } 
     }
     handleClick(){
-        debugger;
+       
         this.callbacks.click(this);
         $('.board-container').css('pointer-events', 'none');
         $('.marble').toggleClass('marbleanima');
