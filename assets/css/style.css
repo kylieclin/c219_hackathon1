@@ -77,6 +77,43 @@ body {
     background-position-y: 5%;
     position: relative;
 }
+
+#rulesButton{
+    background-color:rgb(29, 147, 59, 0.9);
+    border-radius: 5px;
+    height:10%;
+    width:20%;
+    display:inline-block;
+    font-size:1.5rem;
+    color: #ccedda;
+    position: absolute;
+    right: 75%; 
+    top: 82%;
+}
+
+#close{
+    top:91%;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%,-50%);
+}
+
+.hide{
+    display: none;
+}
+
+.popupContainer{
+    height:100%;
+    width:100%;
+    font-size:1em;
+    background-color: blue;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: justify;
+}
+
 .collector-box{
     /* background-color:#c63d95; */
 

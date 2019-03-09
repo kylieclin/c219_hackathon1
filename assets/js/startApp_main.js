@@ -14,4 +14,12 @@ function startApp(){
     newGame.generatePotion();
     newGame.createGameBoard();
     newGame.getGameRows();
+    $('.button').click(showHideModal);
 }
+
+function showHideModal(){
+    $('.popupContainer').toggleClass('hide');
+}
+
+
+
