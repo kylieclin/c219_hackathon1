@@ -1,6 +1,6 @@
 body {
     margin:0;
-    font-family: 'Coiny', cursive;
+    font-family: 'Patua One', cursive;
     font-size:0;
 }
 .game-page{
@@ -60,14 +60,7 @@ body {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
-@keyframes spin {
-    from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(360deg);
-    }
-}
+
 .hidden{
     display:'none'
 }
@@ -102,6 +95,7 @@ body {
 #rulesButton{
     background-color:rgb(29, 147, 59, 0.9);
     border-radius: 5px;
+    font-family: 'Patua One', cursive;
     height:10%;
     width:20%;
     display:inline-block;
@@ -185,6 +179,14 @@ body {
     overflow: hidden;
     box-shadow: 2px 2px 2px 2px #30bb4e;
 }
+
+.potionContainer:hover, .marble:hover{
+    animation-name: shaking;
+    animation-duration: 400ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .potionslot{
     padding-top: 10px;
     width: 100%;
@@ -198,7 +200,6 @@ body {
 }
 
 .slotsleft{
-
     width: 15%;
     text-align: center;
     color: rgb(255, 248, 248);
@@ -250,8 +251,8 @@ body {
     margin: auto;
     position: relative;
     top: 20%;
-    animation: colorchange 1s infinite;
-    -webkit-animation: colorchange 1s infinite;
+    animation: colorchange 5s infinite;
+    -webkit-animation: colorchange 5s infinite;
 }
 
 
@@ -286,6 +287,10 @@ body {
     background: radial-gradient(circle at 50% 0px, rgb(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 58%);
 }
 
+.playerText{
+    background:  radial-gradient( circle at 10% 0px, rgb(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 58%);
+}
+
 .collectedMarbles{
     border-radius: 50px;
     height:50px;
@@ -304,7 +309,7 @@ body {
     width: 20%;
     font-size: 2rem;
     color: white;
-    font-family: 'Coiny', cursive;
+    font-family: 'Patua One', cursive;
     background-color: rgb(29, 147, 59);
     border: 2px solid #c63d95;
 }
@@ -314,29 +319,53 @@ body {
     
 }
 
-.marbleanima{
+.marbleanima, .potionContainer{
     animation: pickme 2s infinite;
     -webkit-animation: pickme 2s infinite;
 }
 
+.audio-control{
+    display: inline-block;
+    width: 50%;
+    height: 10%;
+    float: right;
+}
+/* 'crimson', 'Gold', 'DodgerBlue', 'DarkSlateGray' */
 @keyframes colorchange
 {
-  0%  {
-      background: rgb(221, 188, 41);
-      box-shadow: 1px 1px 1px 1px #ebdd22;
-    }
-  50%  {
-      background: rgb(135, 231, 106);
-      box-shadow: 2px 2px 2px 2px #abe426;
-    }
-  100%  {
-      background: rgb(221, 188, 41);
-      box-shadow: 1px 1px 1px 1px #ebdd22;
-    }
+  0%  {background-color: rgb(226, 53, 88);}
+  15% {background-color: Gold;}
+  30% {background-color: rgb(78, 162, 247);}
+  50% { background-color:  #cc62a7}
+  70% {background-color: rgb(78, 162, 247);}
+  85% {background-color: Gold;}
+  100%  {background-color: rgb(226, 53, 88);}
 }
 
 @keyframes pickme {
     0%{box-shadow: -1px -1px 2px 2px #bba17b;}
     50%{box-shadow: -1px -1px 2px 2px #7e5416;}
     100%{box-shadow: -1px -1px 2px 2px #bba17b;}
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes shaking {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
