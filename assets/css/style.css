@@ -55,10 +55,7 @@ body {
     background-color:white;
     width:95%;
     border-radius:50%;
-    animation-name: spin;
-    animation-duration: 4000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+
 }
 
 .hidden{
@@ -319,7 +316,14 @@ body {
     
 }
 
-.marbleanima, .potionContainer{
+.marbleanima{ 
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.potionContainer{
     animation: pickme 2s infinite;
     -webkit-animation: pickme 2s infinite;
 }
@@ -348,11 +352,17 @@ body {
     100%{box-shadow: -1px -1px 2px 2px #bba17b;}
 }
 @keyframes spin {
-    from {
+    0% {
         transform:rotate(0deg);
+        box-shadow: -1px -1px 2px 2px #bba17b;
     }
-    to {
+    50% {
+        transform:rotate(180deg);
+        box-shadow: -1px -1px 2px 2px #7e5416;
+    }
+    100% {
         transform:rotate(360deg);
+        box-shadow: -1px -1px 2px 2px #bba17b;
     }
 }
 
