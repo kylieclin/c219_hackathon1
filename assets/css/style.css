@@ -51,10 +51,22 @@ body {
     position:relative;
     top:5%;
     left:5%;
-    height:90%;
+    height:85%;
     background-color:white;
-    width:90%;
+    width:95%;
     border-radius:50%;
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
 }
 .hidden{
     display:'none'
