@@ -13,6 +13,7 @@ class Game{
         this.totalRows = null;
         this.fillPotion = this.fillPotion.bind(this);
         this.reset = this.reset.bind(this);
+        this.audio = new Audio('sound/clap.mp3');
     }
     
     generatePotion(){
@@ -39,6 +40,8 @@ class Game{
     checkWin(checkFilled){
         if(checkFilled){
             $('#modal').toggleClass('hide');
+            this.audio.play();
+
         }
     }
     fillPotion(potion){
