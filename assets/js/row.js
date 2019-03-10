@@ -14,6 +14,7 @@ class Row{
             getRows:options.callbacks.getRows
         };
         this.hiddenMarblePosition=9;
+        this.marbleCallBack = this.checkExplosion;
         this.checkExplosion = this.checkExplosion.bind(this);
     }
 
@@ -134,10 +135,22 @@ class Row{
             this.marblesInRow.push(newMarble);
         }
     }
-    createMarbles(marble,marbleObj){//if something is passed in..create one new marble and append to row
+    createMarbles(marble,marbleObj,rowNumber){//if something is passed in..create one new marble and append to row
         if(marble){
-            this.domElements.row.append(marble);
-            this.marblesInRow.push(marbleObj);
+            if (this.marblesInRow.length<9){
+                $(`.row${rowNumber}>.empty`).remove();
+                this.domElements.row.append(marble);
+                this.marblesInRow.push(marbleObj);
+                for (var start = 0; start<9-this.marblesInRow.length;start++){
+                    var emptyContainer = $("<div>",{
+                        'class': 'marble-container empty'
+                    });
+                    this.domElements.row.append(emptyContainer);
+                }
+            } else {
+                this.domElements.row.append(marble);
+                this.marblesInRow.push(marbleObj);
+            }
         } else{
             for (var marbleIndex = 0;marbleIndex<this.marbleColors.length; marbleIndex++){
                 var newMarble = new Marble(this.marbleColors[marbleIndex],this.checkExplosion);
@@ -156,7 +169,7 @@ class Row{
     showMarble(){
         if (this.hiddenMarblePosition>this.marblesInRow.length-1){
             var emptyContainer = $("<div>",{
-                'class': 'marble-container'
+                'class': 'marble-container empty'
             });
             this.domElements.row.append(emptyContainer);
         } else {
