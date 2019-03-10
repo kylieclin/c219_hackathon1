@@ -40,8 +40,9 @@ class Potion{
             this.color.push(copyColor[pIndex]);
             console.log('numbers:' + this.numbers + ' color:' + this.color);
             $(temp).append(tempText, fixedText);
-            this.dom.push(temp);
-            potionContainer.append(temp);
+            potionContainer.append(temp); 
+            this.dom = potionContainer;
+            console.log(this.dom);
             copyColor.splice(pIndex, 1);
 
         };  
@@ -59,6 +60,7 @@ class Potion{
         return filled;
     }
     fillPotionClick(){
+
         this.callback.click(this);
     }
 
