@@ -38,7 +38,7 @@ class Row{
 
         // initialize nextLeftCheck and nextRightCheck
         nextLeftCheck.position = clickedMarbleIndex - 1;
-        if (nextLeftCheck.position > 0){
+        if (nextLeftCheck.position >= 0){
             nextLeftCheck.color = this.marblesInRow[nextLeftCheck.position].marbleColor ;
             console.log('left:[' + nextLeftCheck.position + ']-' + this.marblesInRow[nextLeftCheck.position].marbleColor);
             keepChecking = true;
