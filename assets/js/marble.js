@@ -31,7 +31,7 @@ class Marble{
             'class': 'marble-container'
         });
         this.domElements.marble = $("<div>",{
-            'class': 'marble',
+            'class': 'marble marbleanima',
             css:{'background-color':this.marbleColor}
         });
 
