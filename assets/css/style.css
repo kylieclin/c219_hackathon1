@@ -104,26 +104,78 @@ body {
 }
 
 #close{
-    top:91%;
-    left: 50%;
-    position: relative;
-    transform: translate(-50%,-50%);
+    position:absolute;
+    top:3px;
+    right:2px;
+    width:26px;
+    height:24px;
+    background-color: rgb(29, 147, 59, 0.9);
+    border-radius:100%;
+    border: 2px solid darkgreen;
+    box-shadow: 4px 4px 4px green;
+    font-weight: bold;
+    color: #ccedda;
+    vertical-align: middle;
 }
 
 .hide{
     display: none;
 }
 
+.popupContent h2{
+    margin-top:-22px;
+    text-align: center;
+}
+
+h2>p{
+    margin-top:-5px;
+    text-align: center;
+    color: burlywood; 
+    font-size: 1rem;
+}
+h1{
+    text-align: center;
+    font-size: 1.70em;
+    margin-top: -17px;
+}
+h1>p{
+    color: maroon;
+    font-size: 1rem;
+    color: burlywood;
+    margin-top: -10px;
+    text-align: left;
+}
+
 .popupContainer{
     height:100%;
     width:100%;
-    font-size:1em;
-    background-color: blue;
+    word-wrap: break-word;
+    font-size:1rem;
+    color: #ccedda;
+    overflow-x:hidden;
+    overflow-y:auto;
+    background-color: green;
     position: absolute;
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: justify;
+    z-index: 1;
+}
+
+.popupContent{
+    font-size:1rem;
+    word-wrap: break-word;
+    color: #ccedda;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    position:absolute;
+    top:5%;
+    bottom:5%;
+    right:5%;
+    margin: -1% auto;
+    padding: 17px;
+    /* width:45%; */
 }
 
 .collector-box{
