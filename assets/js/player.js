@@ -98,7 +98,6 @@ class Game{
         }).toggleClass('playing');
         var text = '.playerText'+ nextplayer;
         $(text).css('visibility', 'hidden');
-        $('.marble').toggleClass('marbleanima');
     }
     domForCollectMarbles(){
         var marblesArr = this.collectedMarbles;
