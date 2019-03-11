@@ -39,26 +39,11 @@ class Dispenser{
         this.createRow();
     }
     returnMarblesToRow(objArray){
-        for (var iterations = 0;iterations<objArray.length;iterations++){
-            var currentMarble = objArray[0]
-            var rowIndex = Math.floor(Math.random()*5);
-            var randomRow = this.rows[rowIndex];
-            if (randomRow.marblesInRow.length<9){
-                $(`.row${rowIndex}>.empty`).remove();
-                randomRow.domElements.row.append(currentMarble.render());
-                randomRow.marblesInRow.push(currentMarble);
-                for (var start = 0; start<9-randomRow.marblesInRow.length;start++){
-                    var emptyContainer = $("<div>",{
-                        'class': 'marble-container empty'
-                    });
-                    randomRow.domElements.row.append(emptyContainer);
-                }
-            } else {
-                randomRow.domElements.row.append(currentMarble.render());
-                randomRow.marblesInRow.push(currentMarble);
-            }
-            randomRow.hideMarbles();
+        for(var iterations = 0;iterations<objArray.length;iterations++){
+            var currentMarble = objArray[iterations];
+            this.possibleColorsLeft.push(currentMarble.marbleColor);
         }
+        this.addMarbleToRow();
     }
 
     createRow(){
@@ -86,13 +71,13 @@ class Dispenser{
         }
     }
     addMarbleToRow(){//picks a random row and adds marbles back will be called by... return Marbles to dispenser
-        for (var iterations = 0;iterations<this.possibleColorsLeft.length;iterations++){
+        while(this.possibleColorsLeft.length>0){
             var rowIndex = Math.floor(Math.random()*5);
             var randomRow = this.rows[rowIndex];
             var randomIndex = Math.floor(Math.random()*this.possibleColorsLeft.length);
-            var newMarble = new Marble(this.possibleColorsLeft[randomIndex],randomRow.marbleCallBack);
+            var randomColor = this.possibleColorsLeft[randomIndex];
             this.possibleColorsLeft.splice(randomIndex,1);
-            randomRow.createMarbles(newMarble.render(),newMarble,rowIndex);
+            randomRow.createMarbles(randomColor,rowIndex);
         }
     }
     determineMarblesInRowAmount(){

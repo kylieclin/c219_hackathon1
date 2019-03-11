@@ -41,7 +41,6 @@ class Game{
         if(checkFilled){
             $('#modal').toggleClass('hide');
             this.audio.play();
-
         }
     }
     fillPotion(potion){
