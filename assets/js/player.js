@@ -36,7 +36,6 @@ class Game{
         if(checkFilled){
             $('#modal').toggleClass('hide');
             this.audio.play();
-
         }
     }
     fillPotion(potion){
@@ -57,7 +56,7 @@ class Game{
         this.changePlayer(potion);
         var checkFilled = potion.checkFilledStatus();
         this.checkWin(checkFilled);
-        this.dispenser.returnMarblesToDispenser(marbles); //the leftover marbles
+        this.dispenser.returnMarblesToRow(marbles); //the leftover marbles
     }
     changePlayer(potion){
         var player = potion.player;
