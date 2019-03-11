@@ -33,8 +33,7 @@ class Row{
         this.marblesInRow[clickedMarbleIndex].domElements.container.hide();
         this.showMarble();
         //marbleClicked.domElements.container.hide();
-        debugger;
-
+        
         // initialize nextLeftCheck and nextRightCheck
         nextLeftCheck.position = clickedMarbleIndex - 1;
         if (nextLeftCheck.position >= 0){
@@ -106,9 +105,14 @@ class Row{
                 // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextRightCheck.position].domElements.container.hide();
                 this.showMarble();
-                nextRightCheck.position++;
-                nextRightCheck.color = this.marblesInRow[nextRightCheck.position].marbleColor;
-            }
+                if (nextRightCheck.position++ >= this.marblesInRow.length) {
+                    keepChecking = false;
+                } else {
+                    nextRightCheck.position++;
+                    nextRightCheck.color = this.marblesInRow[nextRightCheck.position].marbleColor;
+                }
+            };
+            
         }
         this.removeMarbles();
         this.callbacks.getRows(this);
