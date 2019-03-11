@@ -33,20 +33,15 @@ class Row{
         this.marblesInRow[clickedMarbleIndex].domElements.container.hide();
         this.showMarble();
         //marbleClicked.domElements.container.hide();
-        // debugger;
-        console.log('Marble clicked: [' + clickedMarbleIndex  + ']-' + this.marblesInRow[clickedMarbleIndex].marbleColor);
-
         // initialize nextLeftCheck and nextRightCheck
         nextLeftCheck.position = clickedMarbleIndex - 1;
         if (nextLeftCheck.position >= 0){
             nextLeftCheck.color = this.marblesInRow[nextLeftCheck.position].marbleColor ;
-            console.log('left:[' + nextLeftCheck.position + ']-' + this.marblesInRow[nextLeftCheck.position].marbleColor);
             keepChecking = true;
         }
         nextRightCheck.position = clickedMarbleIndex + 1;
         if (nextRightCheck.position < this.marblesInRow.length) {
             nextRightCheck.color = this.marblesInRow[nextRightCheck.position].marbleColor;
-            console.log('right:[' + nextRightCheck.position + ']-' + this.marblesInRow[nextRightCheck.position].marbleColor);
             keepChecking = true;
         }
         //===================================================================================================
@@ -66,8 +61,6 @@ class Row{
                 // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextRightCheck.position].domElements.container.hide();
                 this.showMarble();
-                console.log('Left marble removed: ' + nextLeftCheck.position + ' - ' + nextLeftCheck.color);
-                console.log('Rght marble removed: ' + nextRightCheck.position + ' - ' + nextRightCheck.color);
             } else {
                 keepChecking = false;
                 break;
@@ -89,7 +82,6 @@ class Row{
                 // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextLeftCheck.position].domElements.container.hide();
                 this.showMarble();
-                console.log('Left marble removed: ' + nextLeftCheck.position + ' - ' + nextLeftCheck.color);
                 nextLeftCheck.position--;
                 if (nextLeftCheck.position<0){
                     keepChecking = false;
@@ -112,12 +104,11 @@ class Row{
                 // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextRightCheck.position].domElements.container.hide();
                 this.showMarble();
-                console.log('Right marble removed: ' + nextRightCheck.position + ' - ' + nextRightCheck.color);
                 nextRightCheck.position++;
                 nextRightCheck.color = this.marblesInRow[nextRightCheck.position].marbleColor;
             }
         }
-        console.log('startPosToRemove: ', startPosToRemove);
+
         this.removeMarbles();
         this.callbacks.getRows(this);
         if (this.marblesInRow.length>9){

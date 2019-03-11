@@ -1,10 +1,6 @@
 //game (potionobj, marbleobj)
 class Game{
     constructor(potionData){
-        // this.marble;
-        // this.potion;
-        // this.score;
-        // this.marbles =  new Marbles();
         this.player = 2; //temp
         this.potionData = potionData;
         this.playerpotions=[];
@@ -21,7 +17,6 @@ class Game{
         var newPotion = new Potion(this.potionData, player, this.fillPotion);
         var potionNeedtoRender= newPotion.renderPotion();
         this.playerpotions.push(newPotion);
-        console.log(newPotion);
         var playIndex = '.player'+ player+'-has';
         $(playIndex).append(potionNeedtoRender);
         }
@@ -65,7 +60,6 @@ class Game{
     }
     changePlayer(potion){
         var player = potion.player;
-        console.log(player);
         var currentPlay = '.player'+player+'-container';
         var currentText = '.playerText'+player;
         if(player === 0){
