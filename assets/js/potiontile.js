@@ -38,11 +38,9 @@ class Potion{
             
             this.numbers.push(randomnum);
             this.color.push(copyColor[pIndex]);
-            console.log('numbers:' + this.numbers + ' color:' + this.color);
             $(temp).append(tempText, fixedText);
             potionContainer.append(temp); 
             this.dom = potionContainer;
-            console.log(this.dom);
             copyColor.splice(pIndex, 1);
 
         };  

@@ -18,7 +18,6 @@ class Dispenser{
         this.randomNumberOfMarblesInRow=[];//5 (or number of rows) rows of randomly made marbles
     }
     handleMarbleClick(){
-        console.log('marble was clicked');
         this.callbacks.click( this );
     }
 
