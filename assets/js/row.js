@@ -7,7 +7,6 @@ class Row{
         this.randomNumberInRow = options.numbersInRow;
         this.marblesInRow = [];
         this.collectedMarbles=[];
-        this.createMarbles = this.createMarbles.bind(this);
         this.callbacks = {
             addMarbles:options.callbacks.addMarble,
             removeMarble:options.callbacks.removeMarble,
@@ -15,6 +14,7 @@ class Row{
         };
         this.hiddenMarblePosition=9;
         this.marbleCallBack = this.checkExplosion;
+        this.createMarbles = this.createMarbles.bind(this);
         this.checkExplosion = this.checkExplosion.bind(this);
     }
 
@@ -127,37 +127,12 @@ class Row{
         }
     }  // end of function checkExplosion
 
-    updateMarbleRow(colorOfMarbles){
+    createMarbles(marble,marbleObj,rowNumber){//if something is passed in..create one new marble and append to row
         for (var marbleIndex = 0;marbleIndex<this.marbleColors.length; marbleIndex++){
-            var newMarble = new Marble(colorOfMarbles[marbleIndex],this.checkExplosion)
-            var marbleImage = newMarble.render()
+            var newMarble = new Marble(this.marbleColors[marbleIndex],this.checkExplosion);
+            var marbleImage = newMarble.render();
             this.domElements.row.append(marbleImage);
             this.marblesInRow.push(newMarble);
-        }
-    }
-    createMarbles(marble,marbleObj,rowNumber){//if something is passed in..create one new marble and append to row
-        if(marble){
-            if (this.marblesInRow.length<9){
-                $(`.row${rowNumber}>.empty`).remove();
-                this.domElements.row.append(marble);
-                this.marblesInRow.push(marbleObj);
-                for (var start = 0; start<9-this.marblesInRow.length;start++){
-                    var emptyContainer = $("<div>",{
-                        'class': 'marble-container empty'
-                    });
-                    this.domElements.row.append(emptyContainer);
-                }
-            } else {
-                this.domElements.row.append(marble);
-                this.marblesInRow.push(marbleObj);
-            }
-        } else{
-            for (var marbleIndex = 0;marbleIndex<this.marbleColors.length; marbleIndex++){
-                var newMarble = new Marble(this.marbleColors[marbleIndex],this.checkExplosion);
-                var marbleImage = newMarble.render();
-                this.domElements.row.append(marbleImage);
-                this.marblesInRow.push(newMarble);
-            }
         }
         this.hideMarbles();
     }
@@ -181,7 +156,9 @@ class Row{
         for (var marbleIndex in this.collectedMarbles){
             var currentMarble = this.collectedMarbles[marbleIndex];
             var marbleIndexRemoval =this.marblesInRow.indexOf(currentMarble);
+            currentMarble.domElements.container.remove();
             this.marblesInRow.splice(marbleIndexRemoval,1);
+            
         }
     }
     render(){

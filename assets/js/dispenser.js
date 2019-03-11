@@ -38,12 +38,27 @@ class Dispenser{
         }
         this.createRow();
     }
-    returnMarblesToDispenser(objArray){
-        this.returnedMarblesLength = objArray.length
-        for(var marble in objArray){
-            this.possibleColorsLeft.push(objArray[marble].marbleColor)
+    returnMarblesToRow(objArray){
+        for (var iterations = 0;iterations<objArray.length;iterations++){
+            var currentMarble = objArray[0]
+            var rowIndex = Math.floor(Math.random()*5);
+            var randomRow = this.rows[rowIndex];
+            if (randomRow.marblesInRow.length<9){
+                $(`.row${rowIndex}>.empty`).remove();
+                randomRow.domElements.row.append(currentMarble.render());
+                randomRow.marblesInRow.push(currentMarble);
+                for (var start = 0; start<9-randomRow.marblesInRow.length;start++){
+                    var emptyContainer = $("<div>",{
+                        'class': 'marble-container empty'
+                    });
+                    randomRow.domElements.row.append(emptyContainer);
+                }
+            } else {
+                randomRow.domElements.row.append(currentMarble.render());
+                randomRow.marblesInRow.push(currentMarble);
+            }
+            randomRow.hideMarbles();
         }
-        this.addMarbleToRow();
     }
 
     createRow(){
@@ -79,7 +94,6 @@ class Dispenser{
             this.possibleColorsLeft.splice(randomIndex,1);
             randomRow.createMarbles(newMarble.render(),newMarble,rowIndex);
         }
-        
     }
     determineMarblesInRowAmount(){
         var totalMarbles = 80
