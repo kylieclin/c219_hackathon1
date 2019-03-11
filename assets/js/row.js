@@ -29,13 +29,9 @@ class Row{
         this.collectedMarbles = [marbleClicked];
         var clickedMarbleIndex = this.marblesInRow.indexOf(marbleClicked);
         var startPosToRemove = clickedMarbleIndex;
-        // this.callbacks.addMarbles(this.createMarbles,this.checkingExplosion); REMOVING======================
         this.marblesInRow[clickedMarbleIndex].domElements.container.hide();
         this.showMarble();
-        //marbleClicked.domElements.container.hide();
-        // debugger;
         console.log('Marble clicked: [' + clickedMarbleIndex  + ']-' + this.marblesInRow[clickedMarbleIndex].marbleColor);
-
         // initialize nextLeftCheck and nextRightCheck
         nextLeftCheck.position = clickedMarbleIndex - 1;
         if (nextLeftCheck.position >= 0){
@@ -59,11 +55,9 @@ class Row{
                 startPosToRemove = nextLeftCheck.position;
                 // put the marbles into the collectedMarbles object, add new marbles, and hide selected marbles
                 this.collectedMarbles.push(this.marblesInRow[nextLeftCheck.position]);
-                // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextLeftCheck.position].domElements.container.hide();
                 this.showMarble();
                 this.collectedMarbles.push(this.marblesInRow[nextRightCheck.position]);
-                // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextRightCheck.position].domElements.container.hide();
                 this.showMarble();
                 console.log('Left marble removed: ' + nextLeftCheck.position + ' - ' + nextLeftCheck.color);
@@ -75,7 +69,6 @@ class Row{
             //===================================================================================================
             // Check LEFT side - with the same color - continue checking until (1)no more match or (2)at the end
             //===================================================================================================
-            //debugger;
             nextLeftCheck.position--;
             if (nextLeftCheck.position<0){
                 keepChecking = false;
@@ -86,7 +79,6 @@ class Row{
                 startPosToRemove = nextLeftCheck.position;
                 // put the marbles into the collectedMarbles object, add new marbles, and hide selected marbles
                 this.collectedMarbles.push(this.marblesInRow[nextLeftCheck.position]);
-                // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextLeftCheck.position].domElements.container.hide();
                 this.showMarble();
                 console.log('Left marble removed: ' + nextLeftCheck.position + ' - ' + nextLeftCheck.color);
@@ -109,7 +101,6 @@ class Row{
             while (nextRightCheck.position < this.marblesInRow.length && nextRightCheck.color === explodeColor) {
                 // put the marbles into the collectedMarbles object, add new marbles, and hide selected marbles
                 this.collectedMarbles.push(this.marblesInRow[nextRightCheck.position]);
-                // this.callbacks.addMarbles(this.createMarbles, this.checkExplosion);REMOVING======================
                 this.marblesInRow[nextRightCheck.position].domElements.container.hide();
                 this.showMarble();
                 console.log('Right marble removed: ' + nextRightCheck.position + ' - ' + nextRightCheck.color);
@@ -171,7 +162,6 @@ class Row{
         }
     }
     removeMarbles() {
-        // debugger;
         for (var marbleIndex in this.collectedMarbles){
             var currentMarble = this.collectedMarbles[marbleIndex];
             var marbleIndexRemoval =this.marblesInRow.indexOf(currentMarble);
