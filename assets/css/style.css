@@ -123,21 +123,21 @@ body {
 }
 
 .popupContent h2{
-    margin-top:-22px;
+    margin-top: -18px;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2.5vh
 }
 
 h2>p{
-    margin-top:2px;
+    margin-top:7px;
     text-align: center;
     color: burlywood; 
-    font-size: 1rem;
+    font-size: 2vh;
 }
 h1{
     text-align: center;
-    font-size: 1.5em;
-    margin-top: -10px;
+    font-size: 2.5vh;
+    margin-top: -7px;
 }
 h1>p{
     color: maroon;

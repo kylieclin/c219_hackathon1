@@ -37,10 +37,10 @@ class Dispenser{
         }
         this.createRow();
     }
-    returnMarblesToDispenser(objArray){
-        this.returnedMarblesLength = objArray.length
-        for(var marble in objArray){
-            this.possibleColorsLeft.push(objArray[marble].marbleColor)
+    returnMarblesToRow(objArray){
+        for(var iterations = 0;iterations<objArray.length;iterations++){
+            var currentMarble = objArray[iterations];
+            this.possibleColorsLeft.push(currentMarble.marbleColor);
         }
         this.addMarbleToRow();
     }
@@ -70,15 +70,14 @@ class Dispenser{
         }
     }
     addMarbleToRow(){//picks a random row and adds marbles back will be called by... return Marbles to dispenser
-        for (var iterations = 0;iterations<this.possibleColorsLeft.length;iterations++){
+        while(this.possibleColorsLeft.length>0){
             var rowIndex = Math.floor(Math.random()*5);
             var randomRow = this.rows[rowIndex];
             var randomIndex = Math.floor(Math.random()*this.possibleColorsLeft.length);
-            var newMarble = new Marble(this.possibleColorsLeft[randomIndex],randomRow.marbleCallBack);
+            var randomColor = this.possibleColorsLeft[randomIndex];
             this.possibleColorsLeft.splice(randomIndex,1);
-            randomRow.createMarbles(newMarble.render(),newMarble,rowIndex);
+            randomRow.createMarbles(randomColor,rowIndex);
         }
-        
     }
     determineMarblesInRowAmount(){
         var totalMarbles = 80
