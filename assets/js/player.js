@@ -58,7 +58,7 @@ class Game{
         this.dispenser.returnMarblesToRow(marbles); //the leftover marbles
     }
     changePlayer(potion){
-        debugger;
+
         $('.player-area .playing').css('pointer-events', 'none');
         var player = potion.player;
         var currentPlay = '.player'+player+'-container';

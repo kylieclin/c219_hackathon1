@@ -115,7 +115,6 @@ class Row{
     }  // end of function checkExplosion
 
     createMarbles(marbleColor,rowIndex){//if something is passed in..create one new marble and append to row
-        debugger;
         if (marbleColor){
             if (this.marblesInRow.length<9){
                 $(`.row${rowIndex}>.empty`).remove();

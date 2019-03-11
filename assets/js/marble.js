@@ -14,7 +14,6 @@ class Marble{
         this.audio = new Audio('sound/bubbles.mp3')
     }
     handleClick(){
-        debugger;
         this.audio.play();
         $('.board-container').css('pointer-events', 'none');
         $('.marble').toggleClass('marbleanima');
