@@ -44,6 +44,7 @@ class Game{
         for(var MIndex = 0; MIndex < marblesArr.length; MIndex++){ //check marbles
             for(var colorIndex =0; colorIndex < potion.color.length; colorIndex++){ //check colors
                 if(marblesArr[MIndex].marbleColor === potion.color[colorIndex] && potion.numbers[colorIndex] > 0){
+
                     potion.numbers[colorIndex] -=1;
                     potion.currentPotion[colorIndex] +=1;
                     marbles.splice(MIndex, 1);
