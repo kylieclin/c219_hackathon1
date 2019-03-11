@@ -40,7 +40,6 @@ class Game{
     }
     fillPotion(potion){
         var marblesArr = this.dispenser.collectedMarbles;
-        debugger;
         var marbles = marblesArr.concat(); //copy the marbles array for slice
         for(var MIndex = 0; MIndex < marblesArr.length; MIndex++){ //check marbles
             for(var colorIndex =0; colorIndex < potion.color.length; colorIndex++){ //check colors
@@ -59,6 +58,8 @@ class Game{
         this.dispenser.returnMarblesToRow(marbles); //the leftover marbles
     }
     changePlayer(potion){
+        debugger;
+        $('.player-area .playing').css('pointer-events', 'none');
         var player = potion.player;
         var currentPlay = '.player'+player+'-container';
         var currentText = '.playerText'+player;
@@ -69,17 +70,18 @@ class Game{
             var nextPlay = '.player0-container';
             var nexttext = '.playerText0';
         }
-
         $(currentText).css('visibility', 'hidden').text('Pick a marble to make explotion!');
         $(nexttext).css('visibility', 'visible').text('Pick a marble to make explotion!');
         $(currentPlay).css({
-                'opacity': '0.5',
-                'pointer-events': 'none'
+                'opacity': '0.5'
+                // ,
+                // 'pointer-events': 'none'
             }).toggleClass('playing');
     
         $(nextPlay).css({
-            'opacity': '1',
-            'pointer-events': 'auto'
+            'opacity': '1'
+            // ,
+            // 'pointer-events': 'auto'
         }).toggleClass('playing');
         $('.marble').toggleClass('marbleanima');
         $('.board-container').css('pointer-events', 'auto');
@@ -94,6 +96,7 @@ class Game{
         }).toggleClass('playing');
         var text = '.playerText'+ nextplayer;
         $(text).css('visibility', 'hidden');
+        $('.player-area').css('pointer-events', 'none');
     }
     domForCollectMarbles(){
         var marblesArr = this.collectedMarbles;

@@ -14,11 +14,14 @@ class Marble{
         this.audio = new Audio('sound/bubbles.mp3')
     }
     handleClick(){
+        debugger;
         this.audio.play();
         $('.board-container').css('pointer-events', 'none');
         $('.marble').toggleClass('marbleanima');
         $('.playerText').text('Click potion to collect marbles');
+        $('.player-area .playing').css('pointer-events', 'auto');
         this.callbacks.click(this);
+       
     }
     getColor(){
         return this.marbleColor;
