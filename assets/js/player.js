@@ -1,7 +1,7 @@
-//game (potionobj, marbleobj)
+
 class Game{
     constructor(potionData){
-        this.player = 2; //temp
+        this.player = potionData.player; //temp
         this.potionData = potionData;
         this.playerpotions=[];
         this.dispenser = null;
@@ -75,21 +75,17 @@ class Game{
         $(nexttext).css('visibility', 'visible').text('Pick a marble to make explotion!');
         $(currentPlay).css({
                 'opacity': '0.5'
-                // ,
-                // 'pointer-events': 'none'
             }).toggleClass('playing');
     
         $(nextPlay).css({
             'opacity': '1'
-            // ,
-            // 'pointer-events': 'auto'
         }).toggleClass('playing');
         $('.marble').toggleClass('marbleanima');
         $('.board-container').css('pointer-events', 'auto');
         $('.collector-box').empty();
     }
     selectPlay(){
-        var nextplayer = Math.floor(Math.random()*2);
+        var nextplayer = Math.floor(Math.random()*this.player);
         var nextPlay = '.player'+nextplayer+'-container';
         $(nextPlay).css({
             'opacity': '0.5',
