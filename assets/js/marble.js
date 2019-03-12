@@ -19,8 +19,7 @@ class Marble{
         $('.marble').toggleClass('marbleanima');
         $('.playerText').text('Click potion to collect marbles');
         $('.player-area .playing').css('pointer-events', 'auto');
-        this.callbacks.click(this);
-       
+        this.callbacks.click(this); 
     }
     getColor(){
         return this.marbleColor;

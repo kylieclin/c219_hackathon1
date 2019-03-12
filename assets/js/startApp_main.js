@@ -6,7 +6,8 @@ var currPlayerDone = false;
 var newGame;
 var potion ={
     color: ['crimson', 'Gold', 'DodgerBlue', 'DarkSlateGray'],
-    setnum: 5
+    setnum: 4,
+    player: 2
 }
 
 function startApp(){
